@@ -302,7 +302,7 @@ int kvfs_removexattr_impl(const char *path, const char *name)
  */
 int kvfs_opendir_impl(const char *path, struct fuse_file_info *fi)
 {
-    return 0;
+    return -1;
 }
 
 /** Read directory

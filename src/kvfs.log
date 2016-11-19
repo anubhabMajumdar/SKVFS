@@ -11,11 +11,15 @@ kvfs_init()
     max_background = 0
     congestion_threshold = 0
     context:
-    fuse = 00f54570
+    fuse = 01ae0570
     uid = 0
     gid = 0
     pid = 0
-    private_data = 00f53010
-    logfile = 00f54040
+    private_data = 01adf010
+    logfile = 01ae0040
     rootdir = /home/anubhabmajumdar/Desktop/kvfs_test
     umask = 00000
+    kvfs_fullpath:  path = "/"
+    kvfs_fullpath:  path = "/"
+    kvfs_fullpath:  path = "/"
+    kvfs_fullpath:  path = "/"
