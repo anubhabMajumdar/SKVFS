@@ -32,6 +32,8 @@
  */
 int kvfs_getattr_impl(const char *path, struct stat *statbuf)
 {
+	log_msg("\n inside kvfs_getattr_impl\n");
+    
     int res;
 
 	if (strcmp(path, str2md5("/", strlen("/"))) == 0) {
@@ -79,7 +81,15 @@ int kvfs_mknod_impl(const char *path, mode_t mode, dev_t dev)
 /** Create a directory */
 int kvfs_mkdir_impl(const char *path, mode_t mode)
 {
-    return -1;
+	log_msg("\n inside kvfs_mkdir_impl\n");
+    
+	int res;
+
+	res = mkdir(path, mode);
+	if (res == -1)
+		return -errno;
+
+	return 0;
 }
 
 /** Remove a file */
