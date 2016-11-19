@@ -32,17 +32,20 @@
  */
 int kvfs_getattr_impl(const char *path, struct stat *statbuf)
 {
-    int res = 0;
+    int res;
 
-	memset(statbuf, 0, sizeof(struct stat));
 	if (strcmp(path, str2md5("/", strlen("/"))) == 0) {
 		statbuf->st_mode = S_IFDIR | 0755;
 		statbuf->st_nlink = 2;
+		res = 0;
 	}
-	else
-		res = -ENOENT;
-    
-    return res;
+	else 
+		res = lstat(path, statbuf);
+	
+	if (res == -1)
+		return -errno;
+
+	return res;
 }
 
 /** Read the target of a symbolic link
@@ -330,17 +333,7 @@ int kvfs_opendir_impl(const char *path, struct fuse_file_info *fi)
 int kvfs_readdir_impl(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset,
 	       struct fuse_file_info *fi)
 {
-    	(void) offset;
-	(void) fi;
-
-	if (strcmp(path, str2md5("/", strlen("/"))) != 0)
-		return -ENOENT;
-
-	filler(buf, ".", NULL, 0);
-	filler(buf, "..", NULL, 0);
-	filler(buf, path, NULL, 0);
-
-	return 0;
+    	return -1;
 }
 
 /** Release directory
