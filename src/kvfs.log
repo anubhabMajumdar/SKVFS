@@ -11,12 +11,12 @@ kvfs_init()
     max_background = 0
     congestion_threshold = 0
     context:
-    fuse = 01558570
+    fuse = 00c38570
     uid = 0
     gid = 0
     pid = 0
-    private_data = 01557010
-    logfile = 01558040
+    private_data = 00c37010
+    logfile = 00c38040
     rootdir = /home/anubhabmajumdar/Desktop/kvfs_test
     umask = 00000
 
@@ -27,16 +27,27 @@ kvfs_init()
  res=-1
     ERROR Getattr_impl: No such file or directory
 
- inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
-
- res = 5 
-
  inside kvfs_getattr_impl with path = e1b26379a002c5193694f34734931754
 
  NOT in /
 
  res=-1
     ERROR Getattr_impl: No such file or directory
+
+ inside kvfs_getattr_impl with path = 9adcbd8f9527a11a73373252168d391c
+
+ NOT in /
+
+ res=-1
+    ERROR Getattr_impl: No such file or directory
+
+ inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ res = 5 
+
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ res = 5 
 
  inside kvfs_getattr_impl with path = 3bbe59285bddb42da5e0190404d1bea6
 
@@ -45,22 +56,11 @@ kvfs_init()
  res=-1
     ERROR Getattr_impl: No such file or directory
 
- inside kvfs_getattr_impl with path = 9adcbd8f9527a11a73373252168d391c
-
- NOT in /
-
- res=-1
-    ERROR Getattr_impl: No such file or directory
-
- inside kvfs_readdir_impl
-
- res = 5 
-
  inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
 
  res = 6 
 
- inside kvfs_readdir_impl
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
 
  res = 6 
 
@@ -68,7 +68,7 @@ kvfs_init()
 
  res = 7 
 
- inside kvfs_readdir_impl
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
 
  res = 7 
 
@@ -76,7 +76,7 @@ kvfs_init()
 
  res = 8 
 
- inside kvfs_readdir_impl
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
 
  res = 8 
 
@@ -84,7 +84,7 @@ kvfs_init()
 
  res = 9 
 
- inside kvfs_readdir_impl
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
 
  res = 9 
 
@@ -92,7 +92,7 @@ kvfs_init()
 
  res = 10 
 
- inside kvfs_readdir_impl
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
 
  res = 10 
 
@@ -100,7 +100,7 @@ kvfs_init()
 
  res = 11 
 
- inside kvfs_readdir_impl
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
 
  res = 11 
 
@@ -108,7 +108,7 @@ kvfs_init()
 
  res = 12 
 
- inside kvfs_readdir_impl
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
 
  res = 12 
 
@@ -116,7 +116,7 @@ kvfs_init()
 
  res = 13 
 
- inside kvfs_readdir_impl
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
 
  res = 13 
 
@@ -124,7 +124,7 @@ kvfs_init()
 
  res = 14 
 
- inside kvfs_readdir_impl
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
 
  res = 14 
 
@@ -132,7 +132,7 @@ kvfs_init()
 
  res = 15 
 
- inside kvfs_readdir_impl
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
 
  res = 15 
 
@@ -140,7 +140,7 @@ kvfs_init()
 
  res = 16 
 
- inside kvfs_readdir_impl
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
 
  res = 16 
 
@@ -148,7 +148,7 @@ kvfs_init()
 
  res = 17 
 
- inside kvfs_readdir_impl
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
 
  res = 17 
 
@@ -156,7 +156,7 @@ kvfs_init()
 
  res = 18 
 
- inside kvfs_readdir_impl
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
 
  res = 18 
 
@@ -164,7 +164,7 @@ kvfs_init()
 
  res = 19 
 
- inside kvfs_readdir_impl
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
 
  res = 19 
 
@@ -172,7 +172,7 @@ kvfs_init()
 
  res = 20 
 
- inside kvfs_readdir_impl
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
 
  res = 20 
 
@@ -180,7 +180,7 @@ kvfs_init()
 
  res = 21 
 
- inside kvfs_readdir_impl
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
 
  res = 21 
 
@@ -188,7 +188,7 @@ kvfs_init()
 
  res = 22 
 
- inside kvfs_readdir_impl
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
 
  res = 22 
 
@@ -196,7 +196,7 @@ kvfs_init()
 
  res = 23 
 
- inside kvfs_readdir_impl
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
 
  res = 23 
 
@@ -204,7 +204,7 @@ kvfs_init()
 
  res = 24 
 
- inside kvfs_readdir_impl
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
 
  res = 24 
 
@@ -212,7 +212,7 @@ kvfs_init()
 
  res = 25 
 
- inside kvfs_readdir_impl
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
 
  res = 25 
 
@@ -220,7 +220,7 @@ kvfs_init()
 
  res = 26 
 
- inside kvfs_readdir_impl
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
 
  res = 26 
 
@@ -236,165 +236,3 @@ kvfs_init()
  currently in /
 
  res=0
-
- inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
-
- currently in /
-
- res=0
-    kvfs_fullpath:  path = "/"
-
- Inside kvfs_access_impl 
-
- inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
-
- res = 27 
-
- inside kvfs_readdir_impl
-
- res = 27 
-
- inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
-
- currently in /
-
- res=0
-
- inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
-
- currently in /
-
- res=0
-
- inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
-
- currently in /
-
- res=0
-    kvfs_fullpath:  path = "/"
-
- Inside kvfs_access_impl 
-
- inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
-
- currently in /
-
- res=0
-
- inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
-
- currently in /
-
- res=0
-
- inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
-
- currently in /
-
- res=0
-
- inside kvfs_chmod_impl
-
- Inside root 
-
- res = -1 
-    ERROR chmod_impl: Operation not permitted
-
- inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
-
- currently in /
-
- res=0
-    kvfs_fullpath:  path = "/"
-
- Inside kvfs_access_impl 
-
- inside kvfs_getattr_impl with path = e806729b6a2b568fa7e77c3efa3a9684
-
- NOT in /
-
- res=-1
-    ERROR Getattr_impl: No such file or directory
-
- inside kvfs_mkdir_impl
-
- res = -1 
-    ERROR kvfs_mkdir_impl: Permission denied
-
- inside kvfs_getattr_impl with path = e806729b6a2b568fa7e77c3efa3a9684
-
- NOT in /
-
- res=-1
-    ERROR Getattr_impl: No such file or directory
-
- inside kvfs_mkdir_impl
-
- res = -1 
-    ERROR kvfs_mkdir_impl: Permission denied
-
- inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
-
- currently in /
-
- res=0
-
- inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
-
- currently in /
-
- res=0
-
- inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
-
- currently in /
-
- res=0
-
- inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
-
- currently in /
-
- res=0
-    kvfs_fullpath:  path = "/"
-
- Inside kvfs_access_impl 
-
- inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
-
- res = 28 
-
- inside kvfs_readdir_impl
-
- res = 28 
-
- inside kvfs_getattr_impl with path = e806729b6a2b568fa7e77c3efa3a9684
-
- NOT in /
-
- res=-1
-    ERROR Getattr_impl: No such file or directory
-
- inside kvfs_mkdir_impl
-
- res = -1 
-    ERROR kvfs_mkdir_impl: Permission denied
-
- inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
-
- currently in /
-
- res=0
-
- inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
-
- currently in /
-
- res=0
-
- inside kvfs_chmod_impl
-
- Inside root 
-
- res = -1 
-    ERROR chmod_impl: Operation not permitted

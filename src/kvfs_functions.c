@@ -90,8 +90,9 @@ int kvfs_mknod_impl(const char *path, mode_t mode, dev_t dev)
 		res = mkfifo(path, mode);
 	else
 		res = mknod(path, mode, dev);
-	if (res == -1)
+	if (res == -1) { log_error("kvfs_mknod_impl");
 		return -errno;
+	}	
 
 	return 0;
 }
@@ -102,7 +103,7 @@ int kvfs_mkdir_impl(const char *path, mode_t mode)
 	log_msg("\n inside kvfs_mkdir_impl\n");
     
 	int res;
-
+	
 	res = mkdir(path, mode);
 	
 	log_msg("\n res = %d \n", res);
@@ -157,6 +158,7 @@ int kvfs_chmod_impl(const char *path, mode_t mode)
 	log_msg("\n inside kvfs_chmod_impl\n");
 	
 	int res;
+	
 	if (strcmp(path, str2md5("/", strlen("/"))) == 0) { log_msg("\n Inside root \n");
 		res = chmod("/", mode);
 	}	
@@ -177,8 +179,20 @@ int kvfs_chmod_impl(const char *path, mode_t mode)
 int kvfs_chown_impl(const char *path, uid_t uid, gid_t gid)
 {
 	log_msg("\n inside kvfs_chown_impl\n");
+	int res;
+
+	if (strcmp(path, str2md5("/", strlen("/"))) == 0) { log_msg("\n Inside root \n");
+		res = lchown("/", uid, gid);
+	}	
+	else
+		res = lchown(path, uid, gid);
 	
-    return -1;
+	if (res == -1) { log_error("chown_impl");
+		return -errno;
+	}	
+
+	return 0;
+    
 }
 
 /** Change the size of a file */
@@ -370,7 +384,14 @@ int kvfs_setxattr_impl(const char *path, const char *name, const char *value, si
 /** Get extended attributes */
 int kvfs_getxattr_impl(const char *path, const char *name, char *value, size_t size)
 {
-    return -1;
+	int res
+	if (strcmp(path, str2md5("/", strlen("/"))) == 0) 
+		res = lgetxattr("/", name, value, size);
+	else
+		res = lgetxattr(path, name, value, size);
+	if (res == -1)
+		return -errno;
+	return res;
 }
 
 /** List extended attributes */
@@ -437,7 +458,7 @@ int kvfs_opendir_impl(const char *path, struct fuse_file_info *fi)
 int kvfs_readdir_impl(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset,
 	       struct fuse_file_info *fi)
 {
-    	log_msg("\n inside kvfs_readdir_impl\n");
+    	log_msg("\n inside kvfs_readdir_impl with path = %s \n", path);
     	int res;
     	
     	if (strcmp(path, str2md5("/", strlen("/"))) == 0)
@@ -450,7 +471,7 @@ int kvfs_readdir_impl(const char *path, void *buf, fuse_fill_dir_t filler, off_t
 	if (res == -1)
 		return -errno;
 				
-	return res;
+	return 0;
 }
 
 /** Release directory
@@ -478,7 +499,7 @@ int kvfs_fsyncdir_impl(const char *path, int datasync, struct fuse_file_info *fi
 
 int kvfs_access_impl(const char *path, int mask)
 {
-	log_msg("\n Inside kvfs_access_impl \n");
+	log_msg("\n Inside kvfs_access_impl with mask = %d \n", mask);
 	
 	int res;
 		
