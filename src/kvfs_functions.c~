@@ -32,20 +32,23 @@
  */
 int kvfs_getattr_impl(const char *path, struct stat *statbuf)
 {
-	log_msg("\n inside kvfs_getattr_impl\n");
+	log_msg("\n inside kvfs_getattr_impl with path = %s\n", path);
     
     int res;
 
-	if (strcmp(path, str2md5("/", strlen("/"))) == 0) {
-		statbuf->st_mode = S_IFDIR | 0755;
-		statbuf->st_nlink = 2;
-		res = 0;
+	if (strcmp(path, str2md5("/", strlen("/"))) == 0) {	log_msg("\n currently in /\n");
+		//statbuf->st_mode = S_IFDIR | 0755;
+		//statbuf->st_nlink = 2;
+		//res = 0;
+		res = stat("/", statbuf);
 	}
-	else 
-		res = lstat(path, statbuf);
-	
-	if (res == -1)
+	else {	log_msg("\n NOT in /\n");
+		res = stat(path, statbuf);
+	}
+	log_msg("\n res=%d\n", res);
+	if (res == -1) { log_error("Getattr_impl");
 		return -errno;
+	}	
 
 	return res;
 }
@@ -101,8 +104,14 @@ int kvfs_mkdir_impl(const char *path, mode_t mode)
 	int res;
 
 	res = mkdir(path, mode);
-	if (res == -1)
+	
+	log_msg("\n res = %d \n", res);
+    
+    
+	if (res == -1) {
+		log_error("kvfs_mkdir_impl");
 		return -errno;
+	}
 
 	return 0;
 }
@@ -145,12 +154,30 @@ int kvfs_link_impl(const char *path, const char *newpath)
 /** Change the permission bits of a file */
 int kvfs_chmod_impl(const char *path, mode_t mode)
 {
-    return -1;
+	log_msg("\n inside kvfs_chmod_impl\n");
+	
+	int res;
+	if (strcmp(path, str2md5("/", strlen("/"))) == 0) { log_msg("\n Inside root \n");
+		res = chmod("/", mode);
+	}	
+	else
+		res = chmod(path, mode);
+	
+	log_msg("\n res = %d \n", res);
+			
+	if (res == -1) { log_error("chmod_impl");
+		return -errno;
+	}
+	
+	return 0;
+	
 }
 
 /** Change the owner and group of a file */
 int kvfs_chown_impl(const char *path, uid_t uid, gid_t gid)
 {
+	log_msg("\n inside kvfs_chown_impl\n");
+	
     return -1;
 }
 
@@ -164,6 +191,8 @@ int kvfs_truncate_impl(const char *path, off_t newsize)
 /* note -- I'll want to change this as soon as 2.6 is in debian testing */
 int kvfs_utime_impl(const char *path, struct utimbuf *ubuf)
 {
+    log_msg("\n inside kvfs_utime_impl\n");
+	
     return -1;
 }
 
@@ -181,10 +210,15 @@ int kvfs_open_impl(const char *path, struct fuse_file_info *fi)
 {
 	log_msg("\n inside kvfs_open_impl\n");
 	int res;
-
-	res = open(path, fi->flags);
-	if (res == -1)
+	
+	if (strcmp(path, str2md5("/", strlen("/"))) == 0)
+		res = open("/", fi->flags);
+	else
+		res = open(path, fi->flags);
+	
+	if (res == -1) { log_error("open_impl");
 		return -errno;
+	}	
 
 	close(res);
 	return 0;
@@ -208,18 +242,25 @@ int kvfs_open_impl(const char *path, struct fuse_file_info *fi)
 // returned by read.
 int kvfs_read_impl(const char *path, char *buf, size_t size, off_t offset, struct fuse_file_info *fi)
 {
-
+	log_msg("\n inside kvfs_read_impl\n");
 	int fd;
 	int res;
 
 	(void) fi;
-	fd = open(path, O_RDONLY);
-	if (fd == -1)
+	
+	if (strcmp(path, str2md5("/", strlen("/"))) == 0)
+		fd = open("/", O_RDONLY);
+	else
+		fd = open(path, O_RDONLY);
+	
+	if (fd == -1) { log_error("read_impl");
 		return -errno;
+	}	
 
 	res = pread(fd, buf, size, offset);
-	if (res == -1)
+	if (res == -1) { log_error("read_impl (pread)");
 		res = -errno;
+	}	
 
 	close(fd);
 	return res;
@@ -238,6 +279,8 @@ int kvfs_read_impl(const char *path, char *buf, size_t size, off_t offset, struc
 int kvfs_write_impl(const char *path, const char *buf, size_t size, off_t offset,
 	     struct fuse_file_info *fi)
 {
+    log_msg("\n inside kvfs_write_impl\n");
+	
     return -1;
 }
 
@@ -352,7 +395,21 @@ int kvfs_removexattr_impl(const char *path, const char *name)
  */
 int kvfs_opendir_impl(const char *path, struct fuse_file_info *fi)
 {
-    return 0;
+	log_msg("\n inside kvfs_opendir_impl with path = %s \n", path);
+	int res;
+	
+	if (strcmp(path, str2md5("/", strlen("/"))) == 0)
+		res = open("/", fi->flags);
+	else
+		res = open(path, fi->flags);
+	
+	log_msg("\n res = %d \n", res);
+	
+	if (res == -1)
+		return -errno;
+
+	close(res);
+	return 0;
 }
 
 /** Read directory
@@ -380,7 +437,20 @@ int kvfs_opendir_impl(const char *path, struct fuse_file_info *fi)
 int kvfs_readdir_impl(const char *path, void *buf, fuse_fill_dir_t filler, off_t offset,
 	       struct fuse_file_info *fi)
 {
-    	return -1;
+    	log_msg("\n inside kvfs_readdir_impl\n");
+    	int res;
+    	
+    	if (strcmp(path, str2md5("/", strlen("/"))) == 0)
+		res = open("/", O_RDONLY);
+	else
+		res = open(path, O_RDONLY);
+	
+	log_msg("\n res = %d \n", res);
+    	
+	if (res == -1)
+		return -errno;
+				
+	return res;
 }
 
 /** Release directory
@@ -408,7 +478,21 @@ int kvfs_fsyncdir_impl(const char *path, int datasync, struct fuse_file_info *fi
 
 int kvfs_access_impl(const char *path, int mask)
 {
-    return -1;
+	log_msg("\n Inside kvfs_access_impl \n");
+	
+	int res;
+		
+	if (strcmp(path, str2md5("/", strlen("/"))) == 0)
+		res = access("/", mask);
+	else
+		res = access(path, mask);
+	
+	if (res == -1) { log_error("access_impl");
+		return -errno;
+	}	
+
+	return 0;
+	
 }
 
 /**
@@ -457,6 +541,7 @@ int kvfs_ftruncate_impl(const char *path, off_t offset, struct fuse_file_info *f
  */
 int kvfs_fgetattr_impl(const char *path, struct stat *statbuf, struct fuse_file_info *fi)
 {
-    return -1;
+    log_msg("\n inside kvfs_fgetattr_impl\n");
+	return -1;
 }
 
