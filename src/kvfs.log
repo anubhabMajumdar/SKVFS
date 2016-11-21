@@ -11,74 +11,19 @@ kvfs_init()
     max_background = 0
     congestion_threshold = 0
     context:
-    fuse = 00c074f0
+    fuse = 01d144f0
     uid = 0
     gid = 0
     pid = 0
-    private_data = 00c06010
-    logfile = 00c07040
+    private_data = 01d13010
+    logfile = 01d14040
     rootdir = /home/anubhabmajumdar/kvfs_test
     umask = 00000
+    kvfs_fullpath:  path = "/.Trash"
 
  inside kvfs_getattr_impl with path = 3817cedc0f64e53325cfc4665db1f668
     ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/.Trash-1000"
 
  inside kvfs_getattr_impl with path = e1b26379a002c5193694f34734931754
     ERROR Getattr_impl: No such file or directory
-
- inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
-
- inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
-    kvfs_fullpath:  path = "/"
-
- Inside kvfs_access_impl with mask = 1 
-
- inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
-
- In root 
-
- res = -469758416 
-
- inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
-
- inside kvfs_releasedir_impl
-
- inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
-
- In root 
-
- res = -603976496 
-
- inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
-
- inside kvfs_releasedir_impl
-
- inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
-
- In root 
-
- res = -469758176 
-
- inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
-
- inside kvfs_releasedir_impl
-
- inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
-
- In root 
-
- res = -603976256 
-
- inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
-
- inside kvfs_releasedir_impl
-
- inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
-
- inside kvfs_getattr_impl with path = e806729b6a2b568fa7e77c3efa3a9684
-    ERROR Getattr_impl: No such file or directory
-
- inside kvfs_mkdir_impl with mode = 509
-    ERROR kvfs_mkdir_impl: Permission denied
-
- inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9

@@ -226,13 +226,13 @@ int kvfs_chmod_impl(const char *path, mode_t mode)
 	
 	int res;
 	
-	if (strcmp(path, str2md5("/", strlen("/"))) == 0) { //log_msg("\n Inside root \n");
+	if (strcmp(path, str2md5("/", strlen("/"))) == 0) { log_msg("\n Inside root \n");
 		res = chmod("/", mode);
 	}	
 	else
 		res = chmod(path, mode);
 	
-	//log_msg("\n res = %d \n", res);
+	log_msg("\n res = %d \n", res);
 			
 	if (res == -1) { log_error("chmod_impl");
 		return -errno;
@@ -248,11 +248,13 @@ int kvfs_chown_impl(const char *path, uid_t uid, gid_t gid)
 	log_msg("\n inside kvfs_chown_impl\n");
 	int res;
 
-	if (strcmp(path, str2md5("/", strlen("/"))) == 0) { //log_msg("\n Inside root \n");
-		res = lchown("/", uid, gid);
+	if (strcmp(path, str2md5("/", strlen("/"))) == 0) { log_msg("\n Inside root \n");
+		res = chown("/", uid, gid);
 	}	
 	else
-		res = lchown(path, uid, gid);
+		res = chown(path, uid, gid);
+	
+	log_msg("\n res = %d \n", res);
 	
 	if (res == -1) { log_error("chown_impl");
 		return -errno;
@@ -482,7 +484,8 @@ int kvfs_flush_impl(const char *path, struct fuse_file_info *fi)
 int kvfs_release_impl(const char *path, struct fuse_file_info *fi)
 {
     log_msg("\n inside kvfs_release_impl\n");
-	
+	(void) path;
+	(void) fi;
     return 0;
 }
 
@@ -597,20 +600,30 @@ int kvfs_readdir_impl(const char *path, void *buf, fuse_fill_dir_t filler, off_t
 	       struct fuse_file_info *fi)
 {
     	log_msg("\n inside kvfs_readdir_impl with path = %s \n", path);
-    	DIR *res;
+    	DIR *dp;
+    	struct dirent *de;
     	
     	if (strcmp(path, str2md5("/", strlen("/"))) == 0)
-		res = opendir("/");
+		dp = opendir("/");
 	else
-		res = opendir(path);
+		dp = opendir(path);
 	
 	//log_msg("\n res = %d \n", res);
     	
-	if (res == NULL) { log_error("readdir_impl");
+	if (dp == NULL) { log_error("readdir_impl");
 		return -errno;
 	}	
+	
+	while ((de = readdir(dp)) != NULL) {
+		struct stat st;
+		memset(&st, 0, sizeof(st));
+		st.st_ino = de->d_ino;
+		st.st_mode = de->d_type << 12;
+		if (filler(buf, de->d_name, &st, 0))
+			break;
+	}
 		
-	closedir(res);	
+	closedir(dp);	
 	return 0;
 }
 
