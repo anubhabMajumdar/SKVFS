@@ -1,5 +1,5 @@
 #!/bin/bash
-sudo umount /home/anubhabmajumdar/Desktop/mountpt
+sudo umount /mnt/anubhabmajumdar
 make clean
 sudo make
-./kvfs /home/anubhabmajumdar/Desktop/kvfs_test /home/anubhabmajumdar/Desktop/mountpt -o allow_other
+./kvfs /home/anubhabmajumdar/kvfs_test /mnt/anubhabmajumdar -o allow_other

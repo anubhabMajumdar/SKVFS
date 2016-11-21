@@ -87,7 +87,7 @@ char *str2md5(const char *str, int length) {
  */
 int kvfs_getattr(const char *path, struct stat *statbuf)
 {
-//    log_msg("    kvfs_fullpath:  path = \"%s\"\n",path);
+    log_msg("    kvfs_fullpath:  path = \"%s\"\n",path);
     return kvfs_getattr_impl(str2md5(path, strlen(path)), statbuf);
 }
 
@@ -578,20 +578,18 @@ int main(int argc, char *argv[])
     //kvfs_data->rootdir = realpath(argv[argc-2], NULL);
     //argv[argc-2] = argv[argc-1];
     //argv[argc-1] = NULL;
-    
-    //kvfs_data->rootdir = realpath(argv[1], NULL);
-    //argv[1] = argv[2];
-    //argv[2] = argv[3];
-    //argv[3] = argv[4];
-    //argv[4] = NULL;
-    //argc--;
+    kvfs_data->rootdir = realpath(argv[1], NULL);
+    argv[1] = argv[2];
+    argv[2] = argv[3];
+    argv[3] = argv[4];
+    argv[4] = NULL;
+    argc--;
     
     kvfs_data->logfile = log_open();
     
     // turn over control to fuse
     fprintf(stderr, "about to call fuse_main\n");
-    //fuse_stat = fuse_main(argc, argv, &kvfs_oper, kvfs_data);
-    fuse_stat = fuse_main(argc, argv, &kvfs_oper, NULL);
+    fuse_stat = fuse_main(argc, argv, &kvfs_oper, kvfs_data);
     fprintf(stderr, "fuse_main returned %d\n", fuse_stat);
     
     return fuse_stat;

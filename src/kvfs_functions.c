@@ -35,22 +35,22 @@ int kvfs_getattr_impl(const char *path, struct stat *statbuf)
 	log_msg("\n inside kvfs_getattr_impl with path = %s\n", path);
     
     int res;
-
-	if (strcmp(path, str2md5("/", strlen("/"))) == 0) {	log_msg("\n currently in /\n");
+	
+	if (strcmp(path, str2md5("/", strlen("/"))) == 0) {	//log_msg("\n currently in /\n");
 		//statbuf->st_mode = S_IFDIR | 0755;
 		//statbuf->st_nlink = 2;
 		//res = 0;
-		res = stat("/", statbuf);
+		res = lstat("/", statbuf);
 	}
-	else {	log_msg("\n NOT in /\n");
+	else {	//log_msg("\n NOT in /\n");
 		res = stat(path, statbuf);
 	}
-	log_msg("\n res=%d\n", res);
+	//log_msg("\n res=%d\n", res);
 	if (res == -1) { log_error("Getattr_impl");
 		return -errno;
 	}	
-
-	return res;
+	
+	return 0;
 }
 
 /** Read the target of a symbolic link
@@ -67,7 +67,21 @@ int kvfs_getattr_impl(const char *path, struct stat *statbuf)
 // kvfs_readlink() code by Bernardo F Costa (thanks!)
 int kvfs_readlink_impl(const char *path, char *link, size_t size)
 {
-    return -1;
+    	log_msg("\n inside kvfs_readlink_impl\n");
+	
+	int res;
+	if (strcmp(path, str2md5("/", strlen("/"))) == 0) 
+		res = readlink("/", link, size - 1);
+	else
+		res = readlink(path, link, size - 1);
+		
+	if (res == -1) { log_error("readlink_impl");
+		return -errno;
+	}	
+
+	link[res] = '\0';
+	return 0;
+	
 }
 
 /** Create a file node
@@ -78,10 +92,10 @@ int kvfs_readlink_impl(const char *path, char *link, size_t size)
 // shouldn't that comment be "if" there is no.... ?
 int kvfs_mknod_impl(const char *path, mode_t mode, dev_t dev)
 {
-	log_msg("\n inside kvfs_mknod_impl\n");
+	log_msg("\n inside kvfs_mknod_impl with mode = %d\n", mode);
 	
 	int res;
-
+	/*
 	if (S_ISREG(mode)) {
 		res = open(path, O_CREAT | O_EXCL | O_WRONLY, mode);
 		if (res >= 0)
@@ -90,6 +104,9 @@ int kvfs_mknod_impl(const char *path, mode_t mode, dev_t dev)
 		res = mkfifo(path, mode);
 	else
 		res = mknod(path, mode, dev);
+	*/
+	res = mknod(path, mode, dev);
+		
 	if (res == -1) { log_error("kvfs_mknod_impl");
 		return -errno;
 	}	
@@ -100,33 +117,51 @@ int kvfs_mknod_impl(const char *path, mode_t mode, dev_t dev)
 /** Create a directory */
 int kvfs_mkdir_impl(const char *path, mode_t mode)
 {
-	log_msg("\n inside kvfs_mkdir_impl\n");
-    
+	log_msg("\n inside kvfs_mkdir_impl with mode = %d\n", mode);
+    	
 	int res;
 	
 	res = mkdir(path, mode);
 	
-	log_msg("\n res = %d \n", res);
-    
-    
 	if (res == -1) {
 		log_error("kvfs_mkdir_impl");
 		return -errno;
 	}
-
+	
+	close(res);
 	return 0;
 }
 
 /** Remove a file */
 int kvfs_unlink_impl(const char *path)
 {
-    return -1;
+    log_msg("\n inside kvfs_unlink_impl\n");
+	
+	int res;
+
+	res = unlink(path);
+	if (res == -1) { log_error("unlink_impl");
+		return -errno;
+	}	
+
+	return 0;
+		
+    
 }
 
 /** Remove a directory */
 int kvfs_rmdir_impl(const char *path)
 {
-    return -1;
+    log_msg("\n inside kvfs_rmdir_impl\n");
+	int res;
+
+	res = rmdir(path);
+	if (res == -1) { log_error("rmdir_impl");
+		return -errno;
+	}	
+
+	return 0;
+    
 }
 
 /** Create a symbolic link */
@@ -136,20 +171,49 @@ int kvfs_rmdir_impl(const char *path)
 // unaltered, but insert the link into the mounted directory.
 int kvfs_symlink_impl(const char *path, const char *link)
 {
-    return -1;
+    log_msg("\n inside kvfs_symlink_impl\n");
+	
+	int res;
+
+	res = symlink(path, link);
+	if (res == -1) { log_error("symlink_impl");
+		return -errno;
+	}	
+
+	return 0;
+    
 }
 
 /** Rename a file */
 // both path and newpath are fs-relative
 int kvfs_rename_impl(const char *path, const char *newpath)
 {
-    return -1;
+    log_msg("\n inside kvfs_rename_impl\n");
+	
+	int res;
+
+	res = rename(path, newpath);
+	if (res == -1) { log_error("rename_impl");
+		return -errno;
+	}	
+
+	return 0;
+    
 }
 
 /** Create a hard link to a file */
 int kvfs_link_impl(const char *path, const char *newpath)
 {
-    return -1;
+    log_msg("\n inside kvfs_link_impl\n");
+	
+    int res;
+
+	res = link(path, newpath);
+	if (res == -1) { log_error("link_impl");
+		return -errno;
+	}	
+
+	return 0;
 }
 
 /** Change the permission bits of a file */
@@ -159,13 +223,13 @@ int kvfs_chmod_impl(const char *path, mode_t mode)
 	
 	int res;
 	
-	if (strcmp(path, str2md5("/", strlen("/"))) == 0) { log_msg("\n Inside root \n");
+	if (strcmp(path, str2md5("/", strlen("/"))) == 0) { //log_msg("\n Inside root \n");
 		res = chmod("/", mode);
 	}	
 	else
 		res = chmod(path, mode);
 	
-	log_msg("\n res = %d \n", res);
+	//log_msg("\n res = %d \n", res);
 			
 	if (res == -1) { log_error("chmod_impl");
 		return -errno;
@@ -181,7 +245,7 @@ int kvfs_chown_impl(const char *path, uid_t uid, gid_t gid)
 	log_msg("\n inside kvfs_chown_impl\n");
 	int res;
 
-	if (strcmp(path, str2md5("/", strlen("/"))) == 0) { log_msg("\n Inside root \n");
+	if (strcmp(path, str2md5("/", strlen("/"))) == 0) { //log_msg("\n Inside root \n");
 		res = lchown("/", uid, gid);
 	}	
 	else
@@ -198,16 +262,39 @@ int kvfs_chown_impl(const char *path, uid_t uid, gid_t gid)
 /** Change the size of a file */
 int kvfs_truncate_impl(const char *path, off_t newsize)
 {
-    return -1;
+    log_msg("\n inside kvfs_truncate_impl\n");
+	
+    int res;
+
+	res = truncate(path, newsize);
+	if (res == -1) { log_error("truncate_impl");
+		return -errno;
+	}	
+
+	return 0;
 }
 
 /** Change the access and/or modification times of a file */
 /* note -- I'll want to change this as soon as 2.6 is in debian testing */
 int kvfs_utime_impl(const char *path, struct utimbuf *ubuf)
 {
-    log_msg("\n inside kvfs_utime_impl\n");
+    	log_msg("\n inside kvfs_utime_impl\n");
+    	
+    	int res;
+    	
+	if (strcmp(path, str2md5("/", strlen("/"))) == 0)
+		res = utime("/", ubuf);
+	else
+		res = utime(path, ubuf);
 	
-    return -1;
+	if (res == -1)
+	{
+		log_error("utime_impl");
+		return -errno;
+	}
+	
+	return 0;			
+    	
 }
 
 /** File open operation
@@ -277,7 +364,7 @@ int kvfs_read_impl(const char *path, char *buf, size_t size, off_t offset, struc
 	}	
 
 	close(fd);
-	return res;
+	return 0;
 }
 
 /** Write data to an open file
@@ -307,7 +394,19 @@ int kvfs_write_impl(const char *path, const char *buf, size_t size, off_t offset
  */
 int kvfs_statfs_impl(const char *path, struct statvfs *statv)
 {
-    return -1;
+    	log_msg("\n inside kvfs_statfs_impl\n");
+	
+    	int res;
+	if (strcmp(path, str2md5("/", strlen("/"))) == 0) 
+		res = statvfs("/", statv);
+	else
+		res = statvfs(path, statv);
+	if (res == -1) { log_error("statfs_impl");
+		return -errno;
+	}	
+
+	return 0; 		
+    
 }
 
 /** Possibly flush cached data
@@ -359,6 +458,8 @@ int kvfs_flush_impl(const char *path, struct fuse_file_info *fi)
  */
 int kvfs_release_impl(const char *path, struct fuse_file_info *fi)
 {
+    log_msg("\n inside kvfs_release_impl\n");
+	
     return -1;
 }
 
@@ -371,6 +472,8 @@ int kvfs_release_impl(const char *path, struct fuse_file_info *fi)
  */
 int kvfs_fsync_impl(const char *path, int datasync, struct fuse_file_info *fi)
 {
+    log_msg("\n inside kvfs_fsync_impl\n");
+	
     return -1;
 }
 
@@ -378,31 +481,41 @@ int kvfs_fsync_impl(const char *path, int datasync, struct fuse_file_info *fi)
 /** Set extended attributes */
 int kvfs_setxattr_impl(const char *path, const char *name, const char *value, size_t size, int flags)
 {
+    log_msg("\n inside kvfs_setxattr_impl\n");
+	
     return -1;
 }
 
 /** Get extended attributes */
 int kvfs_getxattr_impl(const char *path, const char *name, char *value, size_t size)
 {
-	int res
+	log_msg("\n inside kvfs_getxattr_impl\n");
+	
+	int res;
 	if (strcmp(path, str2md5("/", strlen("/"))) == 0) 
 		res = lgetxattr("/", name, value, size);
 	else
 		res = lgetxattr(path, name, value, size);
-	if (res == -1)
+	if (res == -1) { log_error("Getxattr_impl");
 		return -errno;
-	return res;
+	}	
+		
+	return 0;
 }
 
 /** List extended attributes */
 int kvfs_listxattr_impl(const char *path, char *list, size_t size)
 {
+    log_msg("\n inside kvfs_listxattr_impl\n");
+	
     return -1;
 }
 
 /** Remove extended attributes */
 int kvfs_removexattr_impl(const char *path, const char *name)
 {
+    log_msg("\n inside kvfs_removexattr_impl\n");
+	
     return -1;
 }
 #endif
@@ -424,10 +537,12 @@ int kvfs_opendir_impl(const char *path, struct fuse_file_info *fi)
 	else
 		res = open(path, fi->flags);
 	
-	log_msg("\n res = %d \n", res);
+	//log_msg("\n res = %d \n", res);
 	
-	if (res == -1)
+	if (res == -1) { log_error("opendir_impl");
 		return -errno;
+	}	
+		
 
 	close(res);
 	return 0;
@@ -466,11 +581,13 @@ int kvfs_readdir_impl(const char *path, void *buf, fuse_fill_dir_t filler, off_t
 	else
 		res = open(path, O_RDONLY);
 	
-	log_msg("\n res = %d \n", res);
+	//log_msg("\n res = %d \n", res);
     	
-	if (res == -1)
+	if (res == -1) { log_error("readdir_impl");
 		return -errno;
-				
+	}	
+		
+	close(res);	
 	return 0;
 }
 
@@ -480,7 +597,23 @@ int kvfs_readdir_impl(const char *path, void *buf, fuse_fill_dir_t filler, off_t
  */
 int kvfs_releasedir_impl(const char *path, struct fuse_file_info *fi)
 {
-    return -1;
+    log_msg("\n inside kvfs_releasedir_impl\n");
+	
+    int res;
+    	
+    	if (strcmp(path, str2md5("/", strlen("/"))) == 0)
+		res = open("/", O_RDONLY);
+	else
+		res = open(path, O_RDONLY);
+	
+	//log_msg("\n res = %d \n", res);
+    	
+	if (res == -1) { log_error("releasedir_impl");
+		return -errno;
+	}	
+		
+	close(res);	
+	return 0;
 }
 
 /** Synchronize directory contents
@@ -494,6 +627,8 @@ int kvfs_releasedir_impl(const char *path, struct fuse_file_info *fi)
 // happens to be a directory? ??? >>> I need to implement this...
 int kvfs_fsyncdir_impl(const char *path, int datasync, struct fuse_file_info *fi)
 {
+    log_msg("\n inside kvfs_fsyncdir_impl\n");
+	
     return -1;
 }
 
@@ -545,6 +680,8 @@ int kvfs_access_impl(const char *path, int mask)
  */
 int kvfs_ftruncate_impl(const char *path, off_t offset, struct fuse_file_info *fi)
 {
+    log_msg("\n inside kvfs_ftruncate_impl\n");
+	
     return -1;
 }
 
