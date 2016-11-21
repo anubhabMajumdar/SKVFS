@@ -564,8 +564,8 @@ int main(int argc, char *argv[])
     // start with a hyphen (this will break if you actually have a
     // rootpoint or mountpoint whose name starts with a hyphen, but so
     // will a zillion other programs)
-    //if ((argc < 3) || (argv[argc-2][0] == '-') || (argv[argc-1][0] == '-'))
-//	kvfs_usage();
+    if ((argc < 3) || (argv[argc-2][0] == '-') || (argv[argc-1][0] == '-'))
+	kvfs_usage();
 
     kvfs_data = malloc(sizeof(struct kvfs_state));
     if (kvfs_data == NULL) {
@@ -575,14 +575,15 @@ int main(int argc, char *argv[])
 
     // Pull the rootdir out of the argument list and save it in my
     // internal data
-    //kvfs_data->rootdir = realpath(argv[argc-2], NULL);
-    //argv[argc-2] = argv[argc-1];
-    //argv[argc-1] = NULL;
-    kvfs_data->rootdir = realpath(argv[1], NULL);
-    argv[1] = argv[2];
-    argv[2] = argv[3];
-    argv[3] = argv[4];
-    argv[4] = NULL;
+    kvfs_data->rootdir = realpath(argv[argc-2], NULL);
+    argv[argc-2] = argv[argc-1];
+    argv[argc-1] = NULL;
+    
+    //kvfs_data->rootdir = realpath(argv[1], NULL);
+    //argv[1] = argv[2];
+    //argv[2] = argv[3];
+    //argv[3] = argv[4];
+    //argv[4] = NULL;
     argc--;
     
     kvfs_data->logfile = log_open();

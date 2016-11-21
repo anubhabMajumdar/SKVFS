@@ -50,7 +50,7 @@ int kvfs_getattr_impl(const char *path, struct stat *statbuf)
 		return -errno;
 	}	
 	
-	return 0;
+	return res;
 }
 
 /** Read the target of a symbolic link
@@ -95,7 +95,7 @@ int kvfs_mknod_impl(const char *path, mode_t mode, dev_t dev)
 	log_msg("\n inside kvfs_mknod_impl with mode = %d\n", mode);
 	
 	int res;
-	/*
+	
 	if (S_ISREG(mode)) {
 		res = open(path, O_CREAT | O_EXCL | O_WRONLY, mode);
 		if (res >= 0)
@@ -104,14 +104,14 @@ int kvfs_mknod_impl(const char *path, mode_t mode, dev_t dev)
 		res = mkfifo(path, mode);
 	else
 		res = mknod(path, mode, dev);
-	*/
-	res = mknod(path, mode, dev);
+	
+	//res = mknod(path, mode, dev);
 		
 	if (res == -1) { log_error("kvfs_mknod_impl");
 		return -errno;
 	}	
 
-	return 0;
+	return res;
 }
 
 /** Create a directory */
@@ -121,7 +121,10 @@ int kvfs_mkdir_impl(const char *path, mode_t mode)
     	
 	int res;
 	
-	res = mkdir(path, mode);
+	if (strcmp(path, str2md5("/", strlen("/"))) == 0) 
+		res = mkdir("/", mode);
+	else
+		res = mkdir(path, mode);	
 	
 	if (res == -1) {
 		log_error("kvfs_mkdir_impl");
@@ -129,7 +132,7 @@ int kvfs_mkdir_impl(const char *path, mode_t mode)
 	}
 	
 	close(res);
-	return 0;
+	return res;
 }
 
 /** Remove a file */
@@ -235,7 +238,7 @@ int kvfs_chmod_impl(const char *path, mode_t mode)
 		return -errno;
 	}
 	
-	return 0;
+	return res;
 	
 }
 
@@ -255,7 +258,7 @@ int kvfs_chown_impl(const char *path, uid_t uid, gid_t gid)
 		return -errno;
 	}	
 
-	return 0;
+	return res;
     
 }
 
@@ -550,21 +553,21 @@ int kvfs_removexattr_impl(const char *path, const char *name)
 int kvfs_opendir_impl(const char *path, struct fuse_file_info *fi)
 {
 	log_msg("\n inside kvfs_opendir_impl with path = %s \n", path);
-	int res;
+	DIR *res;
 	
-	if (strcmp(path, str2md5("/", strlen("/"))) == 0)
-		res = open("/", fi->flags);
+	if (strcmp(path, str2md5("/", strlen("/"))) == 0) { log_msg("\n In root \n");
+		res = opendir("/");
+	}	
 	else
-		res = open(path, fi->flags);
+		res = opendir(path);
 	
-	//log_msg("\n res = %d \n", res);
+	log_msg("\n res = %d \n", res);
 	
-	if (res == -1) { log_error("opendir_impl");
+	if (res == NULL) { log_error("opendir_impl");
 		return -errno;
 	}	
-		
-
-	close(res);
+	
+	closedir(res);
 	return 0;
 }
 
@@ -594,20 +597,20 @@ int kvfs_readdir_impl(const char *path, void *buf, fuse_fill_dir_t filler, off_t
 	       struct fuse_file_info *fi)
 {
     	log_msg("\n inside kvfs_readdir_impl with path = %s \n", path);
-    	int res;
+    	DIR *res;
     	
     	if (strcmp(path, str2md5("/", strlen("/"))) == 0)
-		res = open("/", O_RDONLY);
+		res = opendir("/");
 	else
-		res = open(path, O_RDONLY);
+		res = opendir(path);
 	
 	//log_msg("\n res = %d \n", res);
     	
-	if (res == -1) { log_error("readdir_impl");
+	if (res == NULL) { log_error("readdir_impl");
 		return -errno;
 	}	
 		
-	close(res);	
+	closedir(res);	
 	return 0;
 }
 
@@ -619,20 +622,20 @@ int kvfs_releasedir_impl(const char *path, struct fuse_file_info *fi)
 {
     log_msg("\n inside kvfs_releasedir_impl\n");
 	
-    int res;
+    DIR *res;
     	
     	if (strcmp(path, str2md5("/", strlen("/"))) == 0)
-		res = open("/", O_RDONLY);
+		res = opendir("/");
 	else
-		res = open(path, O_RDONLY);
+		res = opendir(path);
 	
 	//log_msg("\n res = %d \n", res);
     	
-	if (res == -1) { log_error("releasedir_impl");
+	if (res == NULL) { log_error("releasedir_impl");
 		return -errno;
 	}	
 		
-	close(res);	
+	closedir(res);	
 	return 0;
 }
 
