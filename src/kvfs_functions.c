@@ -43,7 +43,7 @@ int kvfs_getattr_impl(const char *path, struct stat *statbuf)
 		res = lstat("/", statbuf);
 	}
 	else {	//log_msg("\n NOT in /\n");
-		res = stat(path, statbuf);
+		res = lstat(path, statbuf);
 	}
 	//log_msg("\n res=%d\n", res);
 	if (res == -1) { log_error("Getattr_impl");
@@ -381,8 +381,28 @@ int kvfs_write_impl(const char *path, const char *buf, size_t size, off_t offset
 	     struct fuse_file_info *fi)
 {
     log_msg("\n inside kvfs_write_impl\n");
+	int fd;
+	int res;
+
+	(void) fi;
 	
-    return -1;
+	if (strcmp(path, str2md5("/", strlen("/"))) == 0)
+		fd = open("/", O_WRONLY);
+	else
+		fd = open(path, O_WRONLY);
+	
+	if (fd == -1) { log_error("write_impl");
+		return -errno;
+	}	
+
+	res = pwrite(fd, buf, size, offset);
+	if (res == -1) { log_error("write_impl (pwrite)");
+		res = -errno;
+	}	
+
+	close(fd);
+	return 0;
+    
 }
 
 /** Get file system statistics
@@ -460,7 +480,7 @@ int kvfs_release_impl(const char *path, struct fuse_file_info *fi)
 {
     log_msg("\n inside kvfs_release_impl\n");
 	
-    return -1;
+    return 0;
 }
 
 /** Synchronize file contents
@@ -474,7 +494,7 @@ int kvfs_fsync_impl(const char *path, int datasync, struct fuse_file_info *fi)
 {
     log_msg("\n inside kvfs_fsync_impl\n");
 	
-    return -1;
+    return 0;
 }
 
 #ifdef HAVE_SYS_XATTR_H
@@ -629,7 +649,7 @@ int kvfs_fsyncdir_impl(const char *path, int datasync, struct fuse_file_info *fi
 {
     log_msg("\n inside kvfs_fsyncdir_impl\n");
 	
-    return -1;
+    return 0;
 }
 
 int kvfs_access_impl(const char *path, int mask)
@@ -682,7 +702,7 @@ int kvfs_ftruncate_impl(const char *path, off_t offset, struct fuse_file_info *f
 {
     log_msg("\n inside kvfs_ftruncate_impl\n");
 	
-    return -1;
+    return 0;
 }
 
 /**
@@ -700,6 +720,6 @@ int kvfs_ftruncate_impl(const char *path, off_t offset, struct fuse_file_info *f
 int kvfs_fgetattr_impl(const char *path, struct stat *statbuf, struct fuse_file_info *fi)
 {
     log_msg("\n inside kvfs_fgetattr_impl\n");
-	return -1;
+	return 0;
 }
 
