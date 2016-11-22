@@ -11,12 +11,12 @@ kvfs_init()
     max_background = 0
     congestion_threshold = 0
     context:
-    fuse = 01d144f0
+    fuse = 0257f4f0
     uid = 0
     gid = 0
     pid = 0
-    private_data = 01d13010
-    logfile = 01d14040
+    private_data = 0257e010
+    logfile = 0257f040
     rootdir = /home/anubhabmajumdar/kvfs_test
     umask = 00000
     kvfs_fullpath:  path = "/.Trash"
@@ -27,3 +27,204 @@ kvfs_init()
 
  inside kvfs_getattr_impl with path = e1b26379a002c5193694f34734931754
     ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/"
+
+ inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
+    kvfs_fullpath:  path = "/"
+
+ inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
+    kvfs_fullpath:  path = "/"
+
+ Inside kvfs_access_impl with mask = 1 
+
+ inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ res = 1140854768 
+
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ inside kvfs_releasedir_impl
+    kvfs_fullpath:  path = "/blah"
+
+ inside kvfs_getattr_impl with path = e806729b6a2b568fa7e77c3efa3a9684
+    ERROR Getattr_impl: No such file or directory
+
+ inside kvfs_mkdir_impl with mode = 509
+    kvfs_fullpath:  path = "/blah"
+
+ inside kvfs_getattr_impl with path = e806729b6a2b568fa7e77c3efa3a9684
+
+ inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ res = 1140855136 
+
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+    kvfs_fullpath:  path = "/e806729b6a2b568fa7e77c3efa3a9684"
+
+ inside kvfs_getattr_impl with path = 3e6995a17935dc9b038c1595c5740605
+    ERROR Getattr_impl: No such file or directory
+
+ inside kvfs_releasedir_impl
+
+ inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ res = 1006636976 
+
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ inside kvfs_releasedir_impl
+
+ inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ res = 1140855968 
+
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ inside kvfs_releasedir_impl
+
+ inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ res = 1006637120 
+
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ inside kvfs_releasedir_impl
+    kvfs_fullpath:  path = "/"
+
+ inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
+    kvfs_fullpath:  path = "/blah"
+
+ inside kvfs_getattr_impl with path = e806729b6a2b568fa7e77c3efa3a9684
+    kvfs_fullpath:  path = "/blah"
+
+ Inside kvfs_access_impl with mask = 1 
+
+ inside kvfs_opendir_impl with path = e806729b6a2b568fa7e77c3efa3a9684 
+
+ res = 1140857024 
+
+ inside kvfs_readdir_impl with path = e806729b6a2b568fa7e77c3efa3a9684 
+
+ inside kvfs_releasedir_impl
+    kvfs_fullpath:  path = "/"
+
+ inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
+    kvfs_fullpath:  path = "/blah"
+
+ inside kvfs_getattr_impl with path = e806729b6a2b568fa7e77c3efa3a9684
+    kvfs_fullpath:  path = "/"
+
+ Inside kvfs_access_impl with mask = 1 
+
+ inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ res = 1006638336 
+
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+    kvfs_fullpath:  path = "/e806729b6a2b568fa7e77c3efa3a9684"
+
+ inside kvfs_getattr_impl with path = 3e6995a17935dc9b038c1595c5740605
+    ERROR Getattr_impl: No such file or directory
+
+ inside kvfs_releasedir_impl
+
+ inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ res = 1140857600 
+
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ inside kvfs_releasedir_impl
+
+ inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ res = 1140857888 
+
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ inside kvfs_releasedir_impl
+
+ inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ res = 1006638992 
+
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ inside kvfs_releasedir_impl
+    kvfs_fullpath:  path = "/e806729b6a2b568fa7e77c3efa3a9684"
+
+ inside kvfs_getattr_impl with path = 3e6995a17935dc9b038c1595c5740605
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/"
+
+ inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
+    kvfs_fullpath:  path = "/e80672"
+
+ inside kvfs_getattr_impl with path = d3bff016322ccdec0a75ea6df4fcc681
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/e80672"
+
+ inside kvfs_getattr_impl with path = d3bff016322ccdec0a75ea6df4fcc681
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/e80672"
+
+ inside kvfs_getattr_impl with path = d3bff016322ccdec0a75ea6df4fcc681
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/"
+
+ inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
+    kvfs_fullpath:  path = "/hello"
+
+ inside kvfs_getattr_impl with path = 3ed10a7d12d348c9187f3b6c9dc5c604
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/hello"
+
+ inside kvfs_getattr_impl with path = 3ed10a7d12d348c9187f3b6c9dc5c604
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/hello"
+
+ inside kvfs_getattr_impl with path = 3ed10a7d12d348c9187f3b6c9dc5c604
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/"
+
+ inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
+    kvfs_fullpath:  path = "/blah"
+
+ inside kvfs_getattr_impl with path = e806729b6a2b568fa7e77c3efa3a9684
+    kvfs_fullpath:  path = "/blah"
+
+ Inside kvfs_access_impl with mask = 1 
+    kvfs_fullpath:  path = "/"
+
+ inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
+    kvfs_fullpath:  path = "/blah"
+
+ inside kvfs_getattr_impl with path = e806729b6a2b568fa7e77c3efa3a9684
+    kvfs_fullpath:  path = "/"
+
+ Inside kvfs_access_impl with mask = 1 
+
+ inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ res = 1140859968 
+
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+    kvfs_fullpath:  path = "/e806729b6a2b568fa7e77c3efa3a9684"
+
+ inside kvfs_getattr_impl with path = 3e6995a17935dc9b038c1595c5740605
+    ERROR Getattr_impl: No such file or directory
+
+ inside kvfs_releasedir_impl
+    kvfs_fullpath:  path = "/blah"
+
+ inside kvfs_getattr_impl with path = e806729b6a2b568fa7e77c3efa3a9684
+
+ inside kvfs_rmdir_impl
+
+ inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ res = 1140860704 
+
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ inside kvfs_releasedir_impl

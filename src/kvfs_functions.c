@@ -30,22 +30,55 @@
  * ignored.  The 'st_ino' field is ignored except if the 'use_ino'
  * mount option is given.
  */
+ 
+struct kvfs_state *get_rootdir_path()
+{
+ 	struct fuse_context *fc = fuse_get_context();
+ 	struct kvfs_state *lf = ((struct kvfs_state *)fc->private_data);
+ 	return lf;
+}	
+    	
+char* concat(const char *s1, const char *s2)
+{
+    char *result = malloc(strlen(s1)+strlen(s2)+1);//+1 for the zero-terminator
+    //in real code you would check for errors in malloc here
+    strcpy(result, s1);
+    strcat(result, s2);
+    return result;
+}   	
+
+char* fullpath(char *path)
+{
+	//log_msg("\n FULLPATH = %s \n", path);
+	if (strcmp(path, str2md5("/", strlen("/"))) == 0) {
+		return (concat((get_rootdir_path()->rootdir), "/"));
+	}	
+	else {	
+		return (concat((concat(get_rootdir_path()->rootdir, "/")), path));
+	}	
+}
+
 int kvfs_getattr_impl(const char *path, struct stat *statbuf)
 {
 	log_msg("\n inside kvfs_getattr_impl with path = %s\n", path);
-    
+	
     int res;
 	
+	/*
 	if (strcmp(path, str2md5("/", strlen("/"))) == 0) {	//log_msg("\n currently in /\n");
 		//statbuf->st_mode = S_IFDIR | 0755;
 		//statbuf->st_nlink = 2;
 		//res = 0;
-		res = lstat("/", statbuf);
+		//res = lstat("/", statbuf);
+		res = lstat(get_rootdir_path()->rootdir, statbuf);
 	}
 	else {	//log_msg("\n NOT in /\n");
 		res = lstat(path, statbuf);
 	}
+	*/
 	//log_msg("\n res=%d\n", res);
+	
+	res = lstat(fullpath(path), statbuf);
 	if (res == -1) { log_error("Getattr_impl");
 		return -errno;
 	}	
@@ -121,10 +154,8 @@ int kvfs_mkdir_impl(const char *path, mode_t mode)
     	
 	int res;
 	
-	if (strcmp(path, str2md5("/", strlen("/"))) == 0) 
-		res = mkdir("/", mode);
-	else
-		res = mkdir(path, mode);	
+	//char *fp = concat(concat(get_rootdir_path()->rootdir, "/"),path);
+	res = mkdir(fullpath(path), mode);	
 	
 	if (res == -1) {
 		log_error("kvfs_mkdir_impl");
@@ -158,7 +189,7 @@ int kvfs_rmdir_impl(const char *path)
     log_msg("\n inside kvfs_rmdir_impl\n");
 	int res;
 
-	res = rmdir(path);
+	res = rmdir(fullpath(path));
 	if (res == -1) { log_error("rmdir_impl");
 		return -errno;
 	}	
@@ -558,11 +589,11 @@ int kvfs_opendir_impl(const char *path, struct fuse_file_info *fi)
 	log_msg("\n inside kvfs_opendir_impl with path = %s \n", path);
 	DIR *res;
 	
-	if (strcmp(path, str2md5("/", strlen("/"))) == 0) { log_msg("\n In root \n");
-		res = opendir("/");
-	}	
-	else
-		res = opendir(path);
+	//if (strcmp(path, str2md5("/", strlen("/"))) == 0) { log_msg("\n In root \n");
+	//	res = opendir(get_rootdir_path()->rootdir);
+	//}	
+	//else
+	res = opendir(fullpath(path));
 	
 	log_msg("\n res = %d \n", res);
 	
@@ -603,11 +634,19 @@ int kvfs_readdir_impl(const char *path, void *buf, fuse_fill_dir_t filler, off_t
     	DIR *dp;
     	struct dirent *de;
     	
-    	if (strcmp(path, str2md5("/", strlen("/"))) == 0)
-		dp = opendir("/");
+    	
+    	//log_msg("\n rootdir = %s \n", lf->rootdir);
+    	/* 
+    	if (strcmp(path, str2md5("/", strlen("/"))) == 0) {
+    		dp = opendir(get_rootdir_path()->rootdir);
+		//log_msg("\n kvfs_data = %s \n", kvfs_data->rootdir);
+    		//dp = opendir(kvfs_data->rootdir);
+	}	
 	else
 		dp = opendir(path);
+	*/
 	
+	dp = opendir(fullpath(path));
 	//log_msg("\n res = %d \n", res);
     	
 	if (dp == NULL) { log_error("readdir_impl");
@@ -636,14 +675,15 @@ int kvfs_releasedir_impl(const char *path, struct fuse_file_info *fi)
     log_msg("\n inside kvfs_releasedir_impl\n");
 	
     DIR *res;
-    	
+    	/*
     	if (strcmp(path, str2md5("/", strlen("/"))) == 0)
 		res = opendir("/");
 	else
 		res = opendir(path);
+	*/
 	
 	//log_msg("\n res = %d \n", res);
-    	
+    	res = opendir(fullpath(path));
 	if (res == NULL) { log_error("releasedir_impl");
 		return -errno;
 	}	
@@ -673,16 +713,20 @@ int kvfs_access_impl(const char *path, int mask)
 	log_msg("\n Inside kvfs_access_impl with mask = %d \n", mask);
 	
 	int res;
-		
+	/*	
 	if (strcmp(path, str2md5("/", strlen("/"))) == 0)
 		res = access("/", mask);
 	else
 		res = access(path, mask);
+	*/
+	
+	res = access(fullpath(path), mask);
 	
 	if (res == -1) { log_error("access_impl");
 		return -errno;
 	}	
-
+	
+	
 	return 0;
 	
 }
