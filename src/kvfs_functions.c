@@ -103,10 +103,12 @@ int kvfs_readlink_impl(const char *path, char *link, size_t size)
     	log_msg("\n inside kvfs_readlink_impl\n");
 	
 	int res;
-	if (strcmp(path, str2md5("/", strlen("/"))) == 0) 
+	/*if (strcmp(path, str2md5("/", strlen("/"))) == 0) 
 		res = readlink("/", link, size - 1);
 	else
-		res = readlink(path, link, size - 1);
+		res = readlink(path, link, size - 1);*/
+	
+	res = readlink(fullpath(path), fullpath(link), size - 1);
 		
 	if (res == -1) { log_error("readlink_impl");
 		return -errno;
@@ -130,13 +132,13 @@ int kvfs_mknod_impl(const char *path, mode_t mode, dev_t dev)
 	int res;
 	
 	if (S_ISREG(mode)) {
-		res = open(path, O_CREAT | O_EXCL | O_WRONLY, mode);
+		res = open(fullpath(path), O_CREAT | O_EXCL | O_WRONLY, mode);
 		if (res >= 0)
 			res = close(res);
 	} else if (S_ISFIFO(mode))
-		res = mkfifo(path, mode);
+		res = mkfifo(fullpath(path), mode);
 	else
-		res = mknod(path, mode, dev);
+		res = mknod(fullpath(path), mode, dev);
 	
 	//res = mknod(path, mode, dev);
 		
@@ -173,7 +175,7 @@ int kvfs_unlink_impl(const char *path)
 	
 	int res;
 
-	res = unlink(path);
+	res = unlink(fullpath(path));
 	if (res == -1) { log_error("unlink_impl");
 		return -errno;
 	}	
@@ -209,7 +211,7 @@ int kvfs_symlink_impl(const char *path, const char *link)
 	
 	int res;
 
-	res = symlink(path, link);
+	res = symlink(fullpath(path), fullpath(link));
 	if (res == -1) { log_error("symlink_impl");
 		return -errno;
 	}	
@@ -226,7 +228,7 @@ int kvfs_rename_impl(const char *path, const char *newpath)
 	
 	int res;
 
-	res = rename(path, newpath);
+	res = rename(fullpath(path), fullpath(newpath));
 	if (res == -1) { log_error("rename_impl");
 		return -errno;
 	}	
@@ -242,7 +244,7 @@ int kvfs_link_impl(const char *path, const char *newpath)
 	
     int res;
 
-	res = link(path, newpath);
+	res = link(fullpath(path), fullpath(newpath));
 	if (res == -1) { log_error("link_impl");
 		return -errno;
 	}	
@@ -257,12 +259,14 @@ int kvfs_chmod_impl(const char *path, mode_t mode)
 	
 	int res;
 	
-	if (strcmp(path, str2md5("/", strlen("/"))) == 0) { log_msg("\n Inside root \n");
+	/*if (strcmp(path, str2md5("/", strlen("/"))) == 0) { log_msg("\n Inside root \n");
 		res = chmod("/", mode);
 	}	
 	else
-		res = chmod(path, mode);
+		res = chmod(path, mode);*/
 	
+	res = chmod(fullpath(path),mode);
+
 	log_msg("\n res = %d \n", res);
 			
 	if (res == -1) { log_error("chmod_impl");
@@ -279,11 +283,13 @@ int kvfs_chown_impl(const char *path, uid_t uid, gid_t gid)
 	log_msg("\n inside kvfs_chown_impl\n");
 	int res;
 
-	if (strcmp(path, str2md5("/", strlen("/"))) == 0) { log_msg("\n Inside root \n");
+	/*if (strcmp(path, str2md5("/", strlen("/"))) == 0) { log_msg("\n Inside root \n");
 		res = chown("/", uid, gid);
 	}	
 	else
-		res = chown(path, uid, gid);
+		res = chown(path, uid, gid);*/
+
+	res = chown(fullpath(path), uid, gid);
 	
 	log_msg("\n res = %d \n", res);
 	
@@ -302,7 +308,7 @@ int kvfs_truncate_impl(const char *path, off_t newsize)
 	
     int res;
 
-	res = truncate(path, newsize);
+	res = truncate(fullpath(path), newsize);
 	if (res == -1) { log_error("truncate_impl");
 		return -errno;
 	}	
@@ -318,10 +324,12 @@ int kvfs_utime_impl(const char *path, struct utimbuf *ubuf)
     	
     	int res;
     	
-	if (strcmp(path, str2md5("/", strlen("/"))) == 0)
+	/*if (strcmp(path, str2md5("/", strlen("/"))) == 0)
 		res = utime("/", ubuf);
 	else
-		res = utime(path, ubuf);
+		res = utime(path, ubuf);*/
+
+	res = utime(fullpath(path), ubuf);
 	
 	if (res == -1)
 	{
@@ -348,10 +356,12 @@ int kvfs_open_impl(const char *path, struct fuse_file_info *fi)
 	log_msg("\n inside kvfs_open_impl\n");
 	int res;
 	
-	if (strcmp(path, str2md5("/", strlen("/"))) == 0)
+	/*if (strcmp(path, str2md5("/", strlen("/"))) == 0)
 		res = open("/", fi->flags);
 	else
-		res = open(path, fi->flags);
+		res = open(path, fi->flags);*/
+
+	res = open(fullpath(path), fi->flags);
 	
 	if (res == -1) { log_error("open_impl");
 		return -errno;
@@ -385,11 +395,13 @@ int kvfs_read_impl(const char *path, char *buf, size_t size, off_t offset, struc
 
 	(void) fi;
 	
-	if (strcmp(path, str2md5("/", strlen("/"))) == 0)
+	/*if (strcmp(path, str2md5("/", strlen("/"))) == 0)
 		fd = open("/", O_RDONLY);
 	else
-		fd = open(path, O_RDONLY);
+		fd = open(path, O_RDONLY);*/
 	
+	fd = open(fullpath(path), O_RDONLY);
+
 	if (fd == -1) { log_error("read_impl");
 		return -errno;
 	}	
@@ -422,10 +434,12 @@ int kvfs_write_impl(const char *path, const char *buf, size_t size, off_t offset
 
 	(void) fi;
 	
-	if (strcmp(path, str2md5("/", strlen("/"))) == 0)
+	/*if (strcmp(path, str2md5("/", strlen("/"))) == 0)
 		fd = open("/", O_WRONLY);
 	else
-		fd = open(path, O_WRONLY);
+		fd = open(path, O_WRONLY);*/
+
+	fd = open(fullpath(path), O_WRONLY);
 	
 	if (fd == -1) { log_error("write_impl");
 		return -errno;
@@ -453,10 +467,13 @@ int kvfs_statfs_impl(const char *path, struct statvfs *statv)
     	log_msg("\n inside kvfs_statfs_impl\n");
 	
     	int res;
-	if (strcmp(path, str2md5("/", strlen("/"))) == 0) 
+	/*if (strcmp(path, str2md5("/", strlen("/"))) == 0) 
 		res = statvfs("/", statv);
 	else
-		res = statvfs(path, statv);
+		res = statvfs(path, statv);*/
+
+	res = statvfs(fullpath(path), statv);
+	
 	if (res == -1) { log_error("statfs_impl");
 		return -errno;
 	}	
@@ -540,7 +557,7 @@ int kvfs_setxattr_impl(const char *path, const char *name, const char *value, si
 {
     log_msg("\n inside kvfs_setxattr_impl\n");
 	
-    return -1;
+    return 0;
 }
 
 /** Get extended attributes */
@@ -549,10 +566,12 @@ int kvfs_getxattr_impl(const char *path, const char *name, char *value, size_t s
 	log_msg("\n inside kvfs_getxattr_impl\n");
 	
 	int res;
-	if (strcmp(path, str2md5("/", strlen("/"))) == 0) 
+	/*if (strcmp(path, str2md5("/", strlen("/"))) == 0) 
 		res = lgetxattr("/", name, value, size);
 	else
-		res = lgetxattr(path, name, value, size);
+		res = lgetxattr(path, name, value, size);*/
+
+	res = lgetxattr(fullpath(path), name, value, size);
 	if (res == -1) { log_error("Getxattr_impl");
 		return -errno;
 	}	
@@ -565,7 +584,7 @@ int kvfs_listxattr_impl(const char *path, char *list, size_t size)
 {
     log_msg("\n inside kvfs_listxattr_impl\n");
 	
-    return -1;
+    return 0;
 }
 
 /** Remove extended attributes */
@@ -573,7 +592,7 @@ int kvfs_removexattr_impl(const char *path, const char *name)
 {
     log_msg("\n inside kvfs_removexattr_impl\n");
 	
-    return -1;
+    return 0;
 }
 #endif
 
