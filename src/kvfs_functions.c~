@@ -283,11 +283,13 @@ int kvfs_chown_impl(const char *path, uid_t uid, gid_t gid)
 	log_msg("\n inside kvfs_chown_impl\n");
 	int res;
 
-	if (strcmp(path, str2md5("/", strlen("/"))) == 0) { log_msg("\n Inside root \n");
+	/*if (strcmp(path, str2md5("/", strlen("/"))) == 0) { log_msg("\n Inside root \n");
 		res = chown("/", uid, gid);
 	}	
 	else
-		res = chown(path, uid, gid);
+		res = chown(path, uid, gid);*/
+
+	res = chown(fullpath(path), uid, gid);
 	
 	log_msg("\n res = %d \n", res);
 	
@@ -449,7 +451,7 @@ int kvfs_write_impl(const char *path, const char *buf, size_t size, off_t offset
 	}	
 
 	close(fd);
-	return 0;
+	return res;
     
 }
 

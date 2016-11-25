@@ -11,12 +11,12 @@ kvfs_init()
     max_background = 0
     congestion_threshold = 0
     context:
-    fuse = 023ce510
+    fuse = 022f1560
     uid = 0
     gid = 0
     pid = 0
-    private_data = 023cd010
-    logfile = 023ce040
+    private_data = 022f0010
+    logfile = 022f1040
     rootdir = /home/karthikperu/kvfstest
     umask = 00000
     kvfs_fullpath:  path = "/.Trash"
@@ -32,24 +32,20 @@ kvfs_init()
  inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
     kvfs_fullpath:  path = "/"
 
- inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
-    kvfs_fullpath:  path = "/"
-
- inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
-
- inside kvfs_statfs_impl
-    kvfs_fullpath:  path = "/"
-
- inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
-    kvfs_fullpath:  path = "/"
-
  Inside kvfs_access_impl with mask = 1 
+    kvfs_fullpath:  path = "/"
+
+ inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
 
  inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
 
- res = -1946153632 
+ res = -2080371648 
 
  inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+    kvfs_fullpath:  path = "/363ad9a71ece4b32d2c794a55114788f"
+
+ inside kvfs_getattr_impl with path = 860f85e462ab23e5b5d1ce3a23835861
+    ERROR Getattr_impl: No such file or directory
     kvfs_fullpath:  path = "/e530c757a265b591e48449b2fea562e8"
 
  inside kvfs_getattr_impl with path = ebd769bde81fa93234702701f1eba721
@@ -68,45 +64,111 @@ kvfs_init()
     ERROR Getattr_impl: No such file or directory
 
  inside kvfs_releasedir_impl
+    kvfs_fullpath:  path = "/"
+
+ inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+
+ inside kvfs_open_impl
+
+ inside kvfs_truncate_impl
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+
+kvfs_flush(path="363ad9a71ece4b32d2c794a55114788f", fi=0x9172bd10)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000000
+    lock_owner = 0x8b1d132c77d3caef
+
+ inside kvfs_write_impl
+
+kvfs_flush(path="363ad9a71ece4b32d2c794a55114788f", fi=0x9172bd10)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000000
+    lock_owner = 0x8b1d132c77d3caef
+
+ inside kvfs_release_impl
+    kvfs_fullpath:  path = "/"
+
+ inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+
+ inside kvfs_open_impl
+    kvfs_fullpath:  path = "/abc.txt"
+
+ Inside kvfs_access_impl with mask = 2 
+
+ inside kvfs_read_impl
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+
+kvfs_flush(path="363ad9a71ece4b32d2c794a55114788f", fi=0x9172bd10)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000000
+    lock_owner = 0x15f03de099a457ae
+
+ inside kvfs_release_impl
+    kvfs_fullpath:  path = "/abc.txt"
+
+ Inside kvfs_access_impl with mask = 2 
+    kvfs_fullpath:  path = "/abc.txt"
+
+ Inside kvfs_access_impl with mask = 2 
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
     kvfs_fullpath:  path = "/kp"
 
  inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
     kvfs_fullpath:  path = "/kp/abc.txt"
 
  inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    kvfs_fullpath:  path = "/kp/t1.txt"
 
- inside kvfs_open_impl
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
 
- inside kvfs_truncate_impl
-    kvfs_fullpath:  path = "/kp/abc.txt"
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
 
- inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+ Inside kvfs_access_impl with mask = 2 
+    kvfs_fullpath:  path = "/abc.txt"
 
-kvfs_flush(path="e530c757a265b591e48449b2fea562e8", fi=0x98affd10)
-    fi:
-    flags = 0x00000000
-    fh_old = 0x00000000
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x0000000000000000
-    lock_owner = 0xcff70318ac871941
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    kvfs_fullpath:  path = "/abc.txt"
 
- inside kvfs_write_impl
+ Inside kvfs_access_impl with mask = 2 
+    kvfs_fullpath:  path = "/abc.txt"
 
-kvfs_flush(path="e530c757a265b591e48449b2fea562e8", fi=0x98affd10)
-    fi:
-    flags = 0x00000000
-    fh_old = 0x00000000
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x0000000000000000
-    lock_owner = 0xcff70318ac871941
+ Inside kvfs_access_impl with mask = 2 
+    kvfs_fullpath:  path = "/"
 
- inside kvfs_release_impl
+ inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
     kvfs_fullpath:  path = "/"
 
  inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
 
-kvfs_destroy(userdata=0x023cd010)
+kvfs_destroy(userdata=0x022f0010)

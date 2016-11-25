@@ -412,7 +412,7 @@ int kvfs_read_impl(const char *path, char *buf, size_t size, off_t offset, struc
 	}	
 
 	close(fd);
-	return 0;
+	return res;
 }
 
 /** Write data to an open file
@@ -451,7 +451,7 @@ int kvfs_write_impl(const char *path, const char *buf, size_t size, off_t offset
 	}	
 
 	close(fd);
-	return 0;
+	return res;
     
 }
 
