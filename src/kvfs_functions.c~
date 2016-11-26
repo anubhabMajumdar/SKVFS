@@ -289,15 +289,29 @@ int kvfs_chown_impl(const char *path, uid_t uid, gid_t gid)
 	else
 		res = chown(path, uid, gid);*/
 
-	res = chown(fullpath(path), uid, gid);
+	res = lchown(fullpath(path), uid, gid);
+	/*struct passwd *pw;
+	pw = getpwuid(uid);
 	
+
+	struct group *gr;
+	gr = getgrgid(gid);
+	
+
+	if(gid != -1 && uid != -1)
+		system("sudo chown %s:%s %s",pw->pw_name,gr->gr_name,fullpath(path));
+	else if(uid != -1)
+		system("sudo chown %s %s",pw->pw_name,fullpath(path));	*/
+
+	log_msg("%d",uid);
+	log_msg("%d",gid);
 	log_msg("\n res = %d \n", res);
 	
 	if (res == -1) { log_error("chown_impl");
 		return -errno;
 	}	
 
-	return res;
+	return 0;
     
 }
 
@@ -412,7 +426,7 @@ int kvfs_read_impl(const char *path, char *buf, size_t size, off_t offset, struc
 	}	
 
 	close(fd);
-	return 0;
+	return res;
 }
 
 /** Write data to an open file
@@ -534,7 +548,7 @@ int kvfs_release_impl(const char *path, struct fuse_file_info *fi)
     log_msg("\n inside kvfs_release_impl\n");
 	(void) path;
 	(void) fi;
-    return 0;
+    return 1;
 }
 
 /** Synchronize file contents
@@ -708,7 +722,7 @@ int kvfs_releasedir_impl(const char *path, struct fuse_file_info *fi)
 	}	
 		
 	closedir(res);	
-	return 0;
+	return res;
 }
 
 /** Synchronize directory contents
@@ -724,7 +738,7 @@ int kvfs_fsyncdir_impl(const char *path, int datasync, struct fuse_file_info *fi
 {
     log_msg("\n inside kvfs_fsyncdir_impl\n");
 	
-    return 0;
+    return 1;
 }
 
 int kvfs_access_impl(const char *path, int mask)
@@ -780,8 +794,15 @@ int kvfs_access_impl(const char *path, int mask)
 int kvfs_ftruncate_impl(const char *path, off_t offset, struct fuse_file_info *fi)
 {
     log_msg("\n inside kvfs_ftruncate_impl\n");
-	
-    return 0;
+	int res;
+
+	res = truncate(fullpath(path), offset);
+	if (res == -1) { log_error("truncate_impl");
+		return -errno;
+	}	
+
+	return 0;
+
 }
 
 /**
@@ -799,6 +820,12 @@ int kvfs_ftruncate_impl(const char *path, off_t offset, struct fuse_file_info *f
 int kvfs_fgetattr_impl(const char *path, struct stat *statbuf, struct fuse_file_info *fi)
 {
     log_msg("\n inside kvfs_fgetattr_impl\n");
-	return 0;
+	int res = lstat(fullpath(path), statbuf);
+	if (res == -1) { log_error("Getattr_impl");
+		return -errno;
+	}	
+	
+	return res;
+
 }
 

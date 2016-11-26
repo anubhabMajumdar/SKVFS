@@ -11,12 +11,12 @@ kvfs_init()
     max_background = 0
     congestion_threshold = 0
     context:
-    fuse = 022f1560
+    fuse = 01e3d550
     uid = 0
     gid = 0
     pid = 0
-    private_data = 022f0010
-    logfile = 022f1040
+    private_data = 01e3c010
+    logfile = 01e3d040
     rootdir = /home/karthikperu/kvfstest
     umask = 00000
     kvfs_fullpath:  path = "/.Trash"
@@ -36,49 +36,17 @@ kvfs_init()
     kvfs_fullpath:  path = "/"
 
  inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
+    kvfs_fullpath:  path = "/t1.txt"
 
- inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
-
- res = -2080371648 
-
- inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
-    kvfs_fullpath:  path = "/363ad9a71ece4b32d2c794a55114788f"
-
- inside kvfs_getattr_impl with path = 860f85e462ab23e5b5d1ce3a23835861
-    ERROR Getattr_impl: No such file or directory
-    kvfs_fullpath:  path = "/e530c757a265b591e48449b2fea562e8"
-
- inside kvfs_getattr_impl with path = ebd769bde81fa93234702701f1eba721
-    ERROR Getattr_impl: No such file or directory
-    kvfs_fullpath:  path = "/e100596d3f1fe359bd03a807dd54d002"
-
- inside kvfs_getattr_impl with path = 3f9ae40c5da6f20cca6f4ef5ac522d39
-    ERROR Getattr_impl: No such file or directory
-    kvfs_fullpath:  path = "/cefc28c90b764dad5065913521732166"
-
- inside kvfs_getattr_impl with path = 65a9629527ff60ceffa98d9e4bc6812b
-    ERROR Getattr_impl: No such file or directory
-    kvfs_fullpath:  path = "/95f2ed64a5d6f3dfa4004214bfa8a446"
-
- inside kvfs_getattr_impl with path = 0054da1ee48e9b238627c188c87afa1b
-    ERROR Getattr_impl: No such file or directory
-
- inside kvfs_releasedir_impl
-    kvfs_fullpath:  path = "/"
-
- inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
-    kvfs_fullpath:  path = "/abc.txt"
-
- inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+ inside kvfs_getattr_impl with path = 764342583e171e23fc2280dcb28d83e3
 
  inside kvfs_open_impl
 
- inside kvfs_truncate_impl
-    kvfs_fullpath:  path = "/abc.txt"
+ inside kvfs_ftruncate_impl
 
- inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+ inside kvfs_fgetattr_impl
 
-kvfs_flush(path="363ad9a71ece4b32d2c794a55114788f", fi=0x9172bd10)
+kvfs_flush(path="764342583e171e23fc2280dcb28d83e3", fi=0x051cbd10)
     fi:
     flags = 0x00000000
     fh_old = 0x00000000
@@ -86,39 +54,23 @@ kvfs_flush(path="363ad9a71ece4b32d2c794a55114788f", fi=0x9172bd10)
     direct_io = 0
     keep_cache = 0
     fh = 0x0000000000000000
-    lock_owner = 0x8b1d132c77d3caef
-
- inside kvfs_write_impl
-
-kvfs_flush(path="363ad9a71ece4b32d2c794a55114788f", fi=0x9172bd10)
-    fi:
-    flags = 0x00000000
-    fh_old = 0x00000000
-    writepage = 0
-    direct_io = 0
-    keep_cache = 0
-    fh = 0x0000000000000000
-    lock_owner = 0x8b1d132c77d3caef
+    lock_owner = 0x19b42e6026bff13a
 
  inside kvfs_release_impl
     kvfs_fullpath:  path = "/"
 
  inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
-    kvfs_fullpath:  path = "/abc.txt"
+    kvfs_fullpath:  path = "/t1.txt"
 
- inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+ inside kvfs_getattr_impl with path = 764342583e171e23fc2280dcb28d83e3
 
  inside kvfs_open_impl
-    kvfs_fullpath:  path = "/abc.txt"
-
- Inside kvfs_access_impl with mask = 2 
 
  inside kvfs_read_impl
-    kvfs_fullpath:  path = "/abc.txt"
 
- inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+ inside kvfs_fgetattr_impl
 
-kvfs_flush(path="363ad9a71ece4b32d2c794a55114788f", fi=0x9172bd10)
+kvfs_flush(path="764342583e171e23fc2280dcb28d83e3", fi=0x059ccd10)
     fi:
     flags = 0x00000000
     fh_old = 0x00000000
@@ -126,44 +78,1490 @@ kvfs_flush(path="363ad9a71ece4b32d2c794a55114788f", fi=0x9172bd10)
     direct_io = 0
     keep_cache = 0
     fh = 0x0000000000000000
-    lock_owner = 0x15f03de099a457ae
+    lock_owner = 0x19b42e6026bff13a
 
  inside kvfs_release_impl
-    kvfs_fullpath:  path = "/abc.txt"
+    kvfs_fullpath:  path = "/pqr.txt"
 
- Inside kvfs_access_impl with mask = 2 
-    kvfs_fullpath:  path = "/abc.txt"
-
- Inside kvfs_access_impl with mask = 2 
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
     kvfs_fullpath:  path = "/abc.txt"
 
  inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
     kvfs_fullpath:  path = "/kp"
 
  inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
     kvfs_fullpath:  path = "/kp/abc.txt"
 
  inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
-    kvfs_fullpath:  path = "/kp/t1.txt"
-
- inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
     ERROR Getattr_impl: No such file or directory
-    kvfs_fullpath:  path = "/kp/t1.txt"
+    kvfs_fullpath:  path = "/pqr.txt"
 
- inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
     ERROR Getattr_impl: No such file or directory
-    kvfs_fullpath:  path = "/abc.txt"
-
- Inside kvfs_access_impl with mask = 2 
     kvfs_fullpath:  path = "/abc.txt"
 
  inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
     kvfs_fullpath:  path = "/abc.txt"
 
- Inside kvfs_access_impl with mask = 2 
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/t5.txt"
+
+ inside kvfs_getattr_impl with path = 24b2961482cd47d126222d56f51112fc
+    ERROR Getattr_impl: No such file or directory
+
+ inside kvfs_mknod_impl with mode = 33204
+    kvfs_fullpath:  path = "/t5.txt"
+
+ inside kvfs_getattr_impl with path = 24b2961482cd47d126222d56f51112fc
+
+ inside kvfs_open_impl
+
+ inside kvfs_ftruncate_impl
+
+ inside kvfs_fgetattr_impl
+
+kvfs_flush(path="24b2961482cd47d126222d56f51112fc", fi=0x059ccd10)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000000
+    lock_owner = 0xcc6de219a68a4b81
+
+ inside kvfs_release_impl
+    kvfs_fullpath:  path = "/t5.txt"
+
+ inside kvfs_getattr_impl with path = 24b2961482cd47d126222d56f51112fc
+
+ inside kvfs_open_impl
+
+ inside kvfs_read_impl
+
+ inside kvfs_fgetattr_impl
+
+kvfs_flush(path="24b2961482cd47d126222d56f51112fc", fi=0x059ccd10)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000000
+    lock_owner = 0xcc6de219a68a4b81
+
+ inside kvfs_release_impl
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
     kvfs_fullpath:  path = "/abc.txt"
 
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/t3.txt"
+
+ inside kvfs_getattr_impl with path = aaca2a4f302bd06475abd48e8f87fc7b
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/t3.txt"
+
+ inside kvfs_getattr_impl with path = aaca2a4f302bd06475abd48e8f87fc7b
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/"
+
+ inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/kp/t3.txt"
+
+ inside kvfs_getattr_impl with path = 095d35d0e4ef1fb2a21106d23da95a9f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t3.txt"
+
+ inside kvfs_getattr_impl with path = 095d35d0e4ef1fb2a21106d23da95a9f
+    ERROR Getattr_impl: No such file or directory
+
+ inside kvfs_symlink_impl
+    kvfs_fullpath:  path = "/kp/t3.txt"
+
+ inside kvfs_getattr_impl with path = 095d35d0e4ef1fb2a21106d23da95a9f
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/"
+
+ inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
+
+ inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ res = 18096 
+
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+    kvfs_fullpath:  path = "/764342583e171e23fc2280dcb28d83e3"
+
+ inside kvfs_getattr_impl with path = 6816cecfd295f5fa201c126bcf7f346f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/cefc28c90b764dad5065913521732166"
+
+ inside kvfs_getattr_impl with path = 65a9629527ff60ceffa98d9e4bc6812b
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/4191ec29dac55d1c77652e75808cd58a"
+
+ inside kvfs_getattr_impl with path = b8e09dab29d7ca0b611d42058f4b04d4
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/24b2961482cd47d126222d56f51112fc"
+
+ inside kvfs_getattr_impl with path = 64fb710b7efdcec20ff17b983d278c44
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/095d35d0e4ef1fb2a21106d23da95a9f"
+
+ inside kvfs_getattr_impl with path = d43161f79cbf8aff5d7e91dc8e9b4ac0
+    ERROR Getattr_impl: No such file or directory
+
+ inside kvfs_releasedir_impl
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/kp/t4.txt"
+
+ inside kvfs_getattr_impl with path = 62f3ce51e6094fca9b2e49d199f844de
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/t1.txt"
+
+ inside kvfs_getattr_impl with path = 764342583e171e23fc2280dcb28d83e3
+    kvfs_fullpath:  path = "/kp/t4.txt"
+
+ inside kvfs_getattr_impl with path = 62f3ce51e6094fca9b2e49d199f844de
+    ERROR Getattr_impl: No such file or directory
+
+ inside kvfs_link_impl
+    kvfs_fullpath:  path = "/kp/t4.txt"
+
+ inside kvfs_getattr_impl with path = 62f3ce51e6094fca9b2e49d199f844de
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+
+ inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ res = 21072 
+
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+    kvfs_fullpath:  path = "/764342583e171e23fc2280dcb28d83e3"
+
+ inside kvfs_getattr_impl with path = 6816cecfd295f5fa201c126bcf7f346f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/cefc28c90b764dad5065913521732166"
+
+ inside kvfs_getattr_impl with path = 65a9629527ff60ceffa98d9e4bc6812b
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/4191ec29dac55d1c77652e75808cd58a"
+
+ inside kvfs_getattr_impl with path = b8e09dab29d7ca0b611d42058f4b04d4
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/62f3ce51e6094fca9b2e49d199f844de"
+
+ inside kvfs_getattr_impl with path = fbcc5188af59f7d0e78592e4995db388
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/24b2961482cd47d126222d56f51112fc"
+
+ inside kvfs_getattr_impl with path = 64fb710b7efdcec20ff17b983d278c44
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/095d35d0e4ef1fb2a21106d23da95a9f"
+
+ inside kvfs_getattr_impl with path = d43161f79cbf8aff5d7e91dc8e9b4ac0
+    ERROR Getattr_impl: No such file or directory
+
+ inside kvfs_releasedir_impl
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/kp/t3.txt"
+
+ inside kvfs_getattr_impl with path = 095d35d0e4ef1fb2a21106d23da95a9f
+
+ inside kvfs_readlink_impl
+
+ inside kvfs_opendir_impl with path = cefc28c90b764dad5065913521732166 
+
+ res = -134195680 
+
+ inside kvfs_releasedir_impl
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/kp/t4.txt"
+
+ inside kvfs_getattr_impl with path = 62f3ce51e6094fca9b2e49d199f844de
+
+ inside kvfs_open_impl
+
+ inside kvfs_read_impl
+
+ inside kvfs_fgetattr_impl
+
+kvfs_flush(path="62f3ce51e6094fca9b2e49d199f844de", fi=0x059ccd10)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000000
+    lock_owner = 0xcc6de219a68a4b81
+
+ inside kvfs_release_impl
+    kvfs_fullpath:  path = "/"
+
+ inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/kp/t3.txt"
+
+ inside kvfs_getattr_impl with path = 095d35d0e4ef1fb2a21106d23da95a9f
+
+ inside kvfs_readlink_impl
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/"
+
+ inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
+    kvfs_fullpath:  path = "/t1.txt"
+
+ inside kvfs_getattr_impl with path = 764342583e171e23fc2280dcb28d83e3
+
+ inside kvfs_open_impl
+    kvfs_fullpath:  path = "/t1.txt"
+
  Inside kvfs_access_impl with mask = 2 
+
+ inside kvfs_read_impl
+    kvfs_fullpath:  path = "/t1.txt"
+
+ inside kvfs_getattr_impl with path = 764342583e171e23fc2280dcb28d83e3
+
+kvfs_flush(path="764342583e171e23fc2280dcb28d83e3", fi=0x059ccd10)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000000
+    lock_owner = 0xb5221e353c0f5093
+
+ inside kvfs_release_impl
+    kvfs_fullpath:  path = "/t1.txt"
+
+ inside kvfs_getattr_impl with path = 764342583e171e23fc2280dcb28d83e3
+    kvfs_fullpath:  path = "/t1.txt"
+
+ Inside kvfs_access_impl with mask = 2 
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/t1.txt"
+
+ inside kvfs_getattr_impl with path = 764342583e171e23fc2280dcb28d83e3
+    kvfs_fullpath:  path = "/"
+
+ inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
+    kvfs_fullpath:  path = "/t1.txt"
+
+ inside kvfs_getattr_impl with path = 764342583e171e23fc2280dcb28d83e3
+
+ inside kvfs_open_impl
+    kvfs_fullpath:  path = "/t1.txt~"
+
+ inside kvfs_getattr_impl with path = e665fd55c8b88d15b6330c60b37cf1ab
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/t1.txt~"
+
+ inside kvfs_getattr_impl with path = e665fd55c8b88d15b6330c60b37cf1ab
+    ERROR Getattr_impl: No such file or directory
+
+ inside kvfs_mknod_impl with mode = 33204
+    kvfs_fullpath:  path = "/t1.txt~"
+
+ inside kvfs_getattr_impl with path = e665fd55c8b88d15b6330c60b37cf1ab
+
+ inside kvfs_open_impl
+
+ inside kvfs_read_impl
+
+ inside kvfs_write_impl
+
+ inside kvfs_fgetattr_impl
+
+kvfs_flush(path="e665fd55c8b88d15b6330c60b37cf1ab", fi=0x051cbd10)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000000
+    lock_owner = 0xb5221e353c0f5093
+
+ inside kvfs_release_impl
+
+ inside kvfs_ftruncate_impl
+
+ inside kvfs_fgetattr_impl
+
+ inside kvfs_write_impl
+
+ inside kvfs_fsync_impl
+    kvfs_fullpath:  path = "/t1.txt"
+
+ inside kvfs_getattr_impl with path = 764342583e171e23fc2280dcb28d83e3
+
+kvfs_flush(path="764342583e171e23fc2280dcb28d83e3", fi=0x051cbd10)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000000
+    lock_owner = 0xb5221e353c0f5093
+
+ inside kvfs_release_impl
+    kvfs_fullpath:  path = "/"
+
+ inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
+    kvfs_fullpath:  path = "/t1.txt"
+
+ inside kvfs_getattr_impl with path = 764342583e171e23fc2280dcb28d83e3
+    kvfs_fullpath:  path = "/t1.txt"
+
+ inside kvfs_getattr_impl with path = 764342583e171e23fc2280dcb28d83e3
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/t1.txt"
+
+ inside kvfs_getattr_impl with path = 764342583e171e23fc2280dcb28d83e3
+    kvfs_fullpath:  path = "/t1.txt"
+
+ Inside kvfs_access_impl with mask = 2 
+    kvfs_fullpath:  path = "/t1.txt"
+
+ inside kvfs_getattr_impl with path = 764342583e171e23fc2280dcb28d83e3
+    kvfs_fullpath:  path = "/t1.txt"
+
+ Inside kvfs_access_impl with mask = 2 
+    kvfs_fullpath:  path = "/t1.txt"
+
+ Inside kvfs_access_impl with mask = 2 
+    kvfs_fullpath:  path = "/"
+
+ inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
+    kvfs_fullpath:  path = "/t1.txt"
+
+ inside kvfs_getattr_impl with path = 764342583e171e23fc2280dcb28d83e3
+    kvfs_fullpath:  path = "/t1.txt"
+
+ inside kvfs_getattr_impl with path = 764342583e171e23fc2280dcb28d83e3
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/t1.txt"
+
+ inside kvfs_getattr_impl with path = 764342583e171e23fc2280dcb28d83e3
+
+ inside kvfs_open_impl
+
+ inside kvfs_read_impl
+
+ inside kvfs_fgetattr_impl
+
+kvfs_flush(path="764342583e171e23fc2280dcb28d83e3", fi=0x051cbd10)
+    fi:
+    flags = 0x00000000
+    fh_old = 0x00000000
+    writepage = 0
+    direct_io = 0
+    keep_cache = 0
+    fh = 0x0000000000000000
+    lock_owner = 0x19b42e6026bff13a
+
+ inside kvfs_release_impl
+    kvfs_fullpath:  path = "/t1.txt"
+
+ inside kvfs_getattr_impl with path = 764342583e171e23fc2280dcb28d83e3
+    kvfs_fullpath:  path = "/t1.txt"
+
+ inside kvfs_getattr_impl with path = 764342583e171e23fc2280dcb28d83e3
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+
+ inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ res = -134180608 
+
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+    kvfs_fullpath:  path = "/764342583e171e23fc2280dcb28d83e3"
+
+ inside kvfs_getattr_impl with path = 6816cecfd295f5fa201c126bcf7f346f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/e665fd55c8b88d15b6330c60b37cf1ab"
+
+ inside kvfs_getattr_impl with path = f3a8d86a3dca1d909a506b7e9f2928d1
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/cefc28c90b764dad5065913521732166"
+
+ inside kvfs_getattr_impl with path = 65a9629527ff60ceffa98d9e4bc6812b
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/4191ec29dac55d1c77652e75808cd58a"
+
+ inside kvfs_getattr_impl with path = b8e09dab29d7ca0b611d42058f4b04d4
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/62f3ce51e6094fca9b2e49d199f844de"
+
+ inside kvfs_getattr_impl with path = fbcc5188af59f7d0e78592e4995db388
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/24b2961482cd47d126222d56f51112fc"
+
+ inside kvfs_getattr_impl with path = 64fb710b7efdcec20ff17b983d278c44
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/095d35d0e4ef1fb2a21106d23da95a9f"
+
+ inside kvfs_getattr_impl with path = d43161f79cbf8aff5d7e91dc8e9b4ac0
+    ERROR Getattr_impl: No such file or directory
+
+ inside kvfs_releasedir_impl
+    kvfs_fullpath:  path = "/t1.txt"
+
+ inside kvfs_getattr_impl with path = 764342583e171e23fc2280dcb28d83e3
+    kvfs_fullpath:  path = "/t1.txt"
+
+ inside kvfs_getattr_impl with path = 764342583e171e23fc2280dcb28d83e3
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+
+ inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ res = -134180608 
+
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+    kvfs_fullpath:  path = "/764342583e171e23fc2280dcb28d83e3"
+
+ inside kvfs_getattr_impl with path = 6816cecfd295f5fa201c126bcf7f346f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/e665fd55c8b88d15b6330c60b37cf1ab"
+
+ inside kvfs_getattr_impl with path = f3a8d86a3dca1d909a506b7e9f2928d1
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/cefc28c90b764dad5065913521732166"
+
+ inside kvfs_getattr_impl with path = 65a9629527ff60ceffa98d9e4bc6812b
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/4191ec29dac55d1c77652e75808cd58a"
+
+ inside kvfs_getattr_impl with path = b8e09dab29d7ca0b611d42058f4b04d4
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/62f3ce51e6094fca9b2e49d199f844de"
+
+ inside kvfs_getattr_impl with path = fbcc5188af59f7d0e78592e4995db388
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/24b2961482cd47d126222d56f51112fc"
+
+ inside kvfs_getattr_impl with path = 64fb710b7efdcec20ff17b983d278c44
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/095d35d0e4ef1fb2a21106d23da95a9f"
+
+ inside kvfs_getattr_impl with path = d43161f79cbf8aff5d7e91dc8e9b4ac0
+    ERROR Getattr_impl: No such file or directory
+
+ inside kvfs_releasedir_impl
+    kvfs_fullpath:  path = "/t1.txt"
+
+ inside kvfs_getattr_impl with path = 764342583e171e23fc2280dcb28d83e3
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/t1.txt"
+
+ inside kvfs_getattr_impl with path = 764342583e171e23fc2280dcb28d83e3
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/t1.txt"
+
+ inside kvfs_getattr_impl with path = 764342583e171e23fc2280dcb28d83e3
+    kvfs_fullpath:  path = "/t1.txt"
+
+ inside kvfs_getattr_impl with path = 764342583e171e23fc2280dcb28d83e3
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/t1.txt"
+
+ inside kvfs_getattr_impl with path = 764342583e171e23fc2280dcb28d83e3
+    kvfs_fullpath:  path = "/t1.txt"
+
+ inside kvfs_getattr_impl with path = 764342583e171e23fc2280dcb28d83e3
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/pqr.txt"
+
+ inside kvfs_getattr_impl with path = 5ee82451e7e28a1b066ff44376490deb
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/abc.txt"
+
+ inside kvfs_getattr_impl with path = 363ad9a71ece4b32d2c794a55114788f
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/abc.txt"
+
+ inside kvfs_getattr_impl with path = e530c757a265b591e48449b2fea562e8
+    ERROR Getattr_impl: No such file or directory
+    kvfs_fullpath:  path = "/kp/t1.txt"
+
+ inside kvfs_getattr_impl with path = 342fd4d2d2e5f65f89f35265d8257ec8
+    ERROR Getattr_impl: No such file or directory
+
+ inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ res = 47664 
+
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ inside kvfs_releasedir_impl
+
+ inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ res = 47952 
+
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ inside kvfs_releasedir_impl
+
+ inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ res = 48384 
+
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ inside kvfs_releasedir_impl
+
+ inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ res = 48816 
+
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ inside kvfs_releasedir_impl
+
+ inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ res = -134173232 
+
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ inside kvfs_releasedir_impl
+
+ inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ res = -134173088 
+
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ inside kvfs_releasedir_impl
+
+ inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ res = -134172944 
+
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ inside kvfs_releasedir_impl
+    kvfs_fullpath:  path = "/"
+
+ inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
+    kvfs_fullpath:  path = "/kp"
+
+ inside kvfs_getattr_impl with path = cefc28c90b764dad5065913521732166
+
+ inside kvfs_opendir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ res = -134172656 
+
+ inside kvfs_readdir_impl with path = 6666cd76f96956469e7be39d750cc7d9 
+
+ inside kvfs_releasedir_impl
     kvfs_fullpath:  path = "/"
 
  inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
@@ -171,4 +1569,4 @@ kvfs_flush(path="363ad9a71ece4b32d2c794a55114788f", fi=0x9172bd10)
 
  inside kvfs_getattr_impl with path = 6666cd76f96956469e7be39d750cc7d9
 
-kvfs_destroy(userdata=0x022f0010)
+kvfs_destroy(userdata=0x01e3c010)
