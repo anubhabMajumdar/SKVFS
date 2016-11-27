@@ -31,6 +31,8 @@
  * mount option is given.
  */
  
+/* ------------------------------------------------------------------- Helper functions -------------------------------------------------------- */ 
+ 
 struct kvfs_state *get_rootdir_path()
 {
  	struct fuse_context *fc = fuse_get_context();
@@ -57,6 +59,8 @@ char* fullpath(char *path)
 		return (concat((concat(get_rootdir_path()->rootdir, "/")), path));
 	}	
 }
+
+/* ------------------------------------------------------- KVFS Functions ---------------------------------------------------------------------- */
 
 int kvfs_getattr_impl(const char *path, struct stat *statbuf)
 {
