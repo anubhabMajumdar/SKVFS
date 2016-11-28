@@ -2,4 +2,4 @@
 sudo umount /mnt/anubhabmajumdar
 make clean
 make
-./kvfs /home/anubhabmajumdar/kvfs_test /mnt/anubhabmajumdar
+./kvfs -o allow_root /home/anubhabmajumdar/kvfs_test /mnt/anubhabmajumdar

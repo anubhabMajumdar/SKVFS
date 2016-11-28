@@ -60,7 +60,7 @@ char* fullpath(char *path)
 	}	
 }
 
-/* ------------------------------------------------------- KVFS Functions ---------------------------------------------------------------------- */
+/* -------------------------------------------------------------------- KVFS Functions ---------------------------------------------------------- */
 
 int kvfs_getattr_impl(const char *path, struct stat *statbuf)
 {
@@ -87,7 +87,8 @@ int kvfs_getattr_impl(const char *path, struct stat *statbuf)
 		return -errno;
 	}	
 	
-	return res;
+	//return res;
+	return 0;
 }
 
 /** Read the target of a symbolic link
