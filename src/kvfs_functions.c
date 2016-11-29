@@ -1,3 +1,12 @@
+/* 
+Developed by:
+	Karthik Perumal Palaniappan (kpalani5)
+	Arun Jaganathan (ajagana)
+	Anubhab Majumdar (amajumd)
+	Kiran Krishnan Balakrishnan (kbalakr)
+*/
+
+/* ------------------------------------------------------------------------------------------------------------------------------------------- */
 /*
   Key Value System
   Copyright (C) 2016 Hung-Wei Tseng, Ph.D. <hungwei_tseng@ncsu.edu>
