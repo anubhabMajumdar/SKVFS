@@ -151,7 +151,8 @@ int kvfs_mknod_impl(const char *path, mode_t mode, dev_t dev)
 		return -errno;
 	}	
 
-	return res;
+	//return res;
+	return 0;
 }
 
 /** Create a directory */
@@ -170,7 +171,8 @@ int kvfs_mkdir_impl(const char *path, mode_t mode)
 	}
 	
 	close(res);
-	return res;
+	//return res;
+	return 0;
 }
 
 /** Remove a file */
@@ -278,8 +280,8 @@ int kvfs_chmod_impl(const char *path, mode_t mode)
 		return -errno;
 	}
 	
-	return res;
-	
+	//return res;
+	return 0;
 }
 
 /** Change the owner and group of a file */
@@ -294,7 +296,7 @@ int kvfs_chown_impl(const char *path, uid_t uid, gid_t gid)
 	else
 		res = chown(path, uid, gid);*/
 
-	res = lchown(fullpath(path), uid, gid);
+	res = chown(fullpath(path), uid, gid);
 	/*struct passwd *pw;
 	pw = getpwuid(uid);
 	
@@ -553,7 +555,8 @@ int kvfs_release_impl(const char *path, struct fuse_file_info *fi)
     log_msg("\n inside kvfs_release_impl\n");
 	(void) path;
 	(void) fi;
-    return 1;
+    //return 1;
+    return 0;
 }
 
 /** Synchronize file contents
@@ -727,7 +730,8 @@ int kvfs_releasedir_impl(const char *path, struct fuse_file_info *fi)
 	}	
 		
 	closedir(res);	
-	return res;
+	//return res;
+	return 0;
 }
 
 /** Synchronize directory contents
@@ -830,7 +834,8 @@ int kvfs_fgetattr_impl(const char *path, struct stat *statbuf, struct fuse_file_
 		return -errno;
 	}	
 	
-	return res;
+	//return res;
+	return 0;
 
 }
 
